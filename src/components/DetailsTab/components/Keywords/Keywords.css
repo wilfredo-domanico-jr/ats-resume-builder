@@ -1,0 +1,43 @@
+/* ─── KEYWORD / TAG BOX ────────────────────────────────────────────────────── */
+.keyword-score {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius);
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+.keyword-score.good {
+  background: var(--green-soft);
+  color: var(--green);
+}
+.keyword-score.warn {
+  background: var(--amber-soft);
+  color: var(--amber);
+}
+.keyword-score.bad {
+  background: var(--red-soft);
+  color: var(--red);
+}
+.ks-bar-wrap {
+  width: 80px;
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.ks-bar {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+.good .ks-bar {
+  background: var(--green);
+}
+.warn .ks-bar {
+  background: var(--amber);
+}
+.bad .ks-bar {
+  background: var(--red);
+}

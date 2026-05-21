@@ -4,7 +4,6 @@ import './Contact.css'
 function Contact() {
   return (
     <>
-          <div>
             <div className="section-title">Contact</div>
             <div className="field-row">
               <label>Full Name</label>
@@ -51,7 +50,6 @@ function Contact() {
               </span>
               </div>
             </div>
-          </div>
     </>
   )
 }
