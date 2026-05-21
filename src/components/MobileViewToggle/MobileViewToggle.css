@@ -1,0 +1,14 @@
+.mobile-tabs {
+  display: none;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: var(--header-h);
+  z-index: 50;
+}
+
+@media (max-width: 900px) {
+  .mobile-tabs {
+    display: flex;
+  }
+}

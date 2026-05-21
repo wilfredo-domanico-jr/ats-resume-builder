@@ -1,0 +1,234 @@
+/* ─── CSS VARIABLES ──────────────────────────────────────────────────────── */
+:root {
+  --bg: #f5f4f0;
+  --surface: #ffffff;
+  --surface-2: #f0efeb;
+  --border: #e2e0d9;
+  --border-2: #ccc9bf;
+  --text: #1a1917;
+  --text-2: #6b6760;
+  --text-3: #9b9890;
+  --accent: #1a6ef5;
+  --accent-hover: #0f5de0;
+  --accent-soft: #e8f0fe;
+  --green: #16a34a;
+  --green-soft: #dcfce7;
+  --red: #dc2626;
+  --red-soft: #fee2e2;
+  --amber: #d97706;
+  --amber-soft: #fef3c7;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 28px rgba(0, 0, 0, 0.12);
+  --font-body: "DM Sans", sans-serif;
+  --font-display: "DM Serif Display", serif;
+  --sidebar-w: 380px;
+  --header-h: 56px;
+  --transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] {
+  --bg: #111110;
+  --surface: #1c1b1a;
+  --surface-2: #252422;
+  --border: #2e2c2a;
+  --border-2: #3d3a37;
+  --text: #f0ede8;
+  --text-2: #a09d98;
+  --text-3: #6b6760;
+  --accent: #4d8ff5;
+  --accent-hover: #3a7ef0;
+  --accent-soft: #1a2a45;
+  --green: #22c55e;
+  --green-soft: #14291e;
+  --red: #f87171;
+  --red-soft: #2d1414;
+  --amber: #fbbf24;
+  --amber-soft: #2d2108;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 8px 28px rgba(0, 0, 0, 0.45);
+}
+
+/* ─── RESET ──────────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-size: 15px;
+}
+body {
+  padding-top: var(--header-h);
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  transition:
+    background var(--transition),
+    color var(--transition);
+}
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+button {
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+input,
+textarea,
+select {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.5rem 0.75rem;
+  width: 100%;
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition),
+    background var(--transition);
+  outline: none;
+}
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+textarea {
+  resize: vertical;
+}
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b6760' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.65rem center;
+  padding-right: 2rem;
+}
+label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-2);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1.25rem 0;
+}
+
+/* ─── SCROLLBAR ─────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-2);
+  border-radius: 3px;
+}
+
+/* ─── BTN VARIANTS ──────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius);
+  font-size: 0.825rem;
+  font-weight: 500;
+  border: none;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+.btn-secondary {
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover {
+  background: var(--border);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--text-2);
+  border: 1px solid transparent;
+}
+.btn-ghost:hover {
+  background: var(--surface-2);
+  color: var(--text);
+}
+.btn-danger {
+  background: var(--red-soft);
+  color: var(--red);
+  border: 1px solid transparent;
+}
+.btn-danger:hover {
+  background: var(--red);
+  color: #fff;
+}
+.btn-sm {
+  padding: 0.3rem 0.65rem;
+  font-size: 0.775rem;
+}
+.btn-icon {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  justify-content: center;
+  border-radius: 6px;
+}
+
+/* ─── TABS ─────────────────────────────────────────────────────────────────── */
+.tabs {
+  display: flex;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  padding: 0 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.tab {
+  padding: 0.75rem 1rem;
+  font-size: 0.825rem;
+  font-weight: 500;
+  color: var(--text-2);
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  background: transparent;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+.tab.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+.tab:hover:not(.active) {
+  color: var(--text);
+}

@@ -1,0 +1,52 @@
+/* ─── LAYOUT ─────────────────────────────────────────────────────────────── */
+.app-layout {
+  display: flex;
+  height: calc(100vh - var(--header-h));
+}
+
+/* ─── SIDEBAR / FORM PANEL ───────────────────────────────────────────────── */
+.form-panel {
+  width: var(--sidebar-w);
+  flex-shrink: 0;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  transition:
+    background var(--transition),
+    border-color var(--transition);
+}
+.form-panel-inner {
+  padding: 1.25rem;
+}
+
+.preview-panel {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  transition: background var(--transition);
+}
+
+@media (max-width: 900px) {
+  .form-panel {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    height: auto;
+    overflow-y: visible;
+  }
+
+  .preview-panel {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .app-layout[data-mobile-view="form"] .preview-panel {
+    display: none;
+  }
+
+  .app-layout[data-mobile-view="preview"] .form-panel {
+    display: none;
+  }
+}
