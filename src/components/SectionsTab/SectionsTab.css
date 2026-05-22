@@ -1,0 +1,60 @@
+/* ─── SECTION REORDER ─────────────────────────────────────────────────────── */
+.section-order-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+.section-order-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.55rem 0.75rem;
+  font-size: 0.825rem;
+  font-weight: 400;
+  color: var(--text);
+  cursor: grab;
+  user-select: none;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+  will-change: transform;
+}
+.section-order-item:hover {
+  border-color: var(--border-2);
+  background: var(--surface);
+}
+.section-order-item .soi-label {
+  flex: 1;
+}
+.section-order-item .soi-toggle {
+  width: 28px;
+  height: 16px;
+  border-radius: 8px;
+  border: none;
+  background: var(--border-2);
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+  transition: background var(--transition);
+}
+.section-order-item .soi-toggle::after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  top: 2px;
+  left: 2px;
+  transition: transform var(--transition);
+}
+.section-order-item.enabled .soi-toggle {
+  background: var(--accent);
+}
+.section-order-item.enabled .soi-toggle::after {
+  transform: translateX(12px);
+}
