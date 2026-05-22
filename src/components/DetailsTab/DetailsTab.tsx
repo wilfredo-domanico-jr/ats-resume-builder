@@ -9,6 +9,7 @@ import Education from "./components/Education/Education";
 import Skills from "./components/Skills/Skills";
 import Certification from "./components/Certification/Certification";
 import Projects from "./components/Projects/Projects";
+import Languages from "./components/Languages/Languages";
 
 function DetailsTab() {
   return (
@@ -25,6 +26,7 @@ function DetailsTab() {
         <Skills />
         <Certification />
         <Projects />
+        <Languages />
       </div>
     </>
   );
