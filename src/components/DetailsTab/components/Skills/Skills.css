@@ -1,0 +1,23 @@
+/* ─── SKILL TAGS ────────────────────────────────────────────────────────── */
+.skill-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: var(--accent-soft);
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  color: var(--accent);
+  border-radius: 5px;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.775rem;
+  margin-right: 0.3rem;
+  margin-bottom: 0.3rem;
+}
+.skill-tag button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--accent);
+  font-size: 0.75rem;
+  padding: 0;
+  line-height: 1;
+}

@@ -1,3 +1,5 @@
+import './Skills.css'
+
 function Skills() {
   return (
     <div style={{ marginTop: '1.25rem' }}>
