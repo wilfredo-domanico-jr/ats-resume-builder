@@ -8,12 +8,13 @@ import Tabs from "./components/Tabs/Tabs";
 // import PreviewToolbar from "./components/PreviewToolbar/PreviewToolbar";
 import DetailsTab from "./components/DetailsTab/DetailsTab";
 import SectionsTab from "./components/SectionsTab/SectionsTab";
+import AppearanceTab from "./components/AppearanceTab/AppearanceTab";
 
 function App() {
   const [showToast, setShowToast] = useState(false);
 
   type Tab = "details" | "section" | "appearance";
-  const [activeTab, setActiveTab] = useState<Tab>("section");
+  const [activeTab, setActiveTab] = useState<Tab>("details");
 
   const [sections, setSections] = useState([
     {
@@ -74,6 +75,8 @@ function App() {
           {activeTab === "section" && (
             <SectionsTab sections={sections} setSections={setSections} />
           )}
+
+          {activeTab === "appearance" && <AppearanceTab />}
         </aside>
         <main className="preview-panel">{/* <PreviewToolbar /> */}</main>
       </div>

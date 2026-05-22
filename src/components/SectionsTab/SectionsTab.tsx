@@ -122,50 +122,52 @@ function SectionsTab({ sections, setSections }: SectionsTabProps) {
   const activeItem = sections.find((s) => s.id === activeId);
 
   return (
-    <div className="form-panel-inner">
-      <div className="section-title">Section Visibility & Order</div>
+    <>
+      <div className="form-panel-inner">
+        <div className="section-title">Section Visibility & Order</div>
 
-      <p
-        style={{
-          fontSize: "0.8rem",
-          color: "var(--text-2)",
-          marginBottom: "0.75rem",
-        }}
-      >
-        Drag to reorder. Toggle to show/hide.
-      </p>
-
-      <DndContext
-        sensors={sensors}
-        collisionDetection={closestCenter}
-        onDragStart={handleDragStart}
-        onDragEnd={handleDragEnd}
-      >
-        <SortableContext
-          items={sections.map((s) => s.id)}
-          strategy={verticalListSortingStrategy}
+        <p
+          style={{
+            fontSize: "0.8rem",
+            color: "var(--text-2)",
+            marginBottom: "0.75rem",
+          }}
         >
-          <div className="section-order-list">
-            {sections.map((section) => (
-              <SortableItem
-                key={section.id}
-                section={section}
-                toggleSection={toggleSection}
-              />
-            ))}
-          </div>
-        </SortableContext>
+          Drag to reorder. Toggle to show/hide.
+        </p>
 
-        {/* FLOATING DRAG PREVIEW */}
-        <DragOverlay>
-          {activeItem ? (
-            <div className="section-order-item enabled dragging-overlay">
-              {activeItem.label}
+        <DndContext
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          onDragStart={handleDragStart}
+          onDragEnd={handleDragEnd}
+        >
+          <SortableContext
+            items={sections.map((s) => s.id)}
+            strategy={verticalListSortingStrategy}
+          >
+            <div className="section-order-list">
+              {sections.map((section) => (
+                <SortableItem
+                  key={section.id}
+                  section={section}
+                  toggleSection={toggleSection}
+                />
+              ))}
             </div>
-          ) : null}
-        </DragOverlay>
-      </DndContext>
-    </div>
+          </SortableContext>
+
+          {/* FLOATING DRAG PREVIEW */}
+          <DragOverlay>
+            {activeItem ? (
+              <div className="section-order-item enabled dragging-overlay">
+                {activeItem.label}
+              </div>
+            ) : null}
+          </DragOverlay>
+        </DndContext>
+      </div>
+    </>
   );
 }
 
