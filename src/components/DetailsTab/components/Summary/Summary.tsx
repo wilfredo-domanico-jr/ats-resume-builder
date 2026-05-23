@@ -1,8 +1,19 @@
 import "./Summary.css";
 import { useState } from "react";
 
-function Summary() {
+type SummaryTabProps = {
+  summary: string;
+  setSummary: (value: string) => void;
+};
+
+function Summary({ summary, setSummary }: SummaryTabProps) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setSummary(e.target.value);
+  };
+
+  
   return (
     <>
       <div className="section-card">
@@ -22,8 +33,11 @@ function Summary() {
               <textarea
                 rows={5}
                 placeholder="Results-driven engineer with 6+ years of experience…"
+                name="summary"
+                value={summary}
+                onChange={handleChange}
               ></textarea>
-              <div className="char-counter">0 chars</div>
+              <div className="char-counter"> {summary.length} chars</div>
             </div>
           </div>
         )}

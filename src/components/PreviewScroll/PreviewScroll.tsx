@@ -3,8 +3,9 @@ import type { ContactForm } from "../../types/resume";
 
 type ContactFormProps = {
   contact: ContactForm;
+  summary: string;
 };
-function PreviewScroll({ contact }: ContactFormProps) {
+function PreviewScroll({ contact, summary }: ContactFormProps) {
   const { links, ...textFields } = contact;
 
   const hasTextData = Object.values(textFields).some(
@@ -13,11 +14,15 @@ function PreviewScroll({ contact }: ContactFormProps) {
 
   const hasContactData = hasTextData || links.length > 0;
 
+  const hasProfessionalSummary = summary.trim() !== "";
+
+  const hasAnyData = hasContactData || hasProfessionalSummary;
+
   return (
     <>
       <div className="preview-scroll">
         <div className="resume-paper" id="resumePaper">
-          {!hasContactData && (
+          {!hasAnyData && (
             <div className="resume-placeholder">
               <div className="rp-icon">📄</div>
 
@@ -64,6 +69,22 @@ function PreviewScroll({ contact }: ContactFormProps) {
                   </a>
                 ))}
               </div>
+            </div>
+          )}
+
+          {hasProfessionalSummary && (
+            <div className="resume-section">
+              <div className="resume-section-title">PROFESSIONAL SUMMARY</div>
+
+              <p
+                style={{
+                  fontSize: ".85rem",
+                  color: "#2d2c2a",
+                  lineHeight: 1.6,
+                }}
+              >
+                {summary}
+              </p>
             </div>
           )}
         </div>

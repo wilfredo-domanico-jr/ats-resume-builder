@@ -10,4 +10,5 @@ export type ContactForm = {
 export type ResumeData = {
   contact: ContactForm;
   keywords: string[];
+  summary: string;
 };

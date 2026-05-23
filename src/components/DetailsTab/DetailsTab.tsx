@@ -15,6 +15,8 @@ type DetailsTabProps = {
   setContact: (value: ContactForm) => void;
   keywords: string[];
   setKeywords: (value: string[]) => void;
+  summary: string;
+  setSummary: (value: string) => void;
 };
 
 function DetailsTab({
@@ -22,6 +24,8 @@ function DetailsTab({
   setContact,
   keywords,
   setKeywords,
+  summary,
+  setSummary,
 }: DetailsTabProps) {
   return (
     <>
@@ -30,7 +34,7 @@ function DetailsTab({
         <hr />
         <Contact contact={contact} setContact={setContact} />
         <Keywords keywords={keywords} setKeywords={setKeywords} />
-        <Summary />
+        <Summary summary={summary} setSummary={setSummary} />
         <Experience />
         <Education />
         <Skills />

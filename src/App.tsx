@@ -19,14 +19,22 @@ function App() {
     "details" | "section" | "appearance"
   >("details");
 
-  const { resume, updateContact, updateKeywords, sections, setSections } =
-    useResume();
+  const {
+    resume,
+    resetResume,
+    setResume,
+    updateContact,
+    updateKeywords,
+    sections,
+    setSections,
+    updateSummary,
+  } = useResume();
 
   return (
     <>
       {showToast && <Toast message="Item deleted successfully" icon="🗑️" />}
 
-      <Header />
+      <Header resetResume={resetResume} />
       <MobileViewToggle />
 
       <div className="app-layout">
@@ -39,6 +47,8 @@ function App() {
               setContact={updateContact}
               keywords={resume.keywords}
               setKeywords={updateKeywords}
+              summary={resume.summary}
+              setSummary={updateSummary}
             />
           )}
 
@@ -50,7 +60,7 @@ function App() {
         </aside>
         <main className="preview-panel">
           <PreviewToolbar />
-          <PreviewScroll contact={resume.contact} />
+          <PreviewScroll contact={resume.contact} summary={resume.summary} />
         </main>
       </div>
     </>
