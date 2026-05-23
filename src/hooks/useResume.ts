@@ -79,7 +79,6 @@ export function useResume() {
   return {
     resume,
     resetResume,
-    setResume,
     updateContact,
     updateKeywords,
     sections,

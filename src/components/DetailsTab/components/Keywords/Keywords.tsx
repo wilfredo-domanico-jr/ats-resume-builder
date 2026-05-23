@@ -2,11 +2,12 @@ import "./Keywords.css";
 import { useState } from "react";
 
 type KeywordsTabProps = {
+  summary: string;
   keywords: string[];
   setKeywords: (value: string[]) => void;
 };
 
-function Keywords({ keywords, setKeywords }: KeywordsTabProps) {
+function Keywords({ summary, keywords, setKeywords }: KeywordsTabProps) {
   const [input, setInput] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
@@ -25,8 +26,18 @@ function Keywords({ keywords, setKeywords }: KeywordsTabProps) {
     setKeywords(parsed);
   };
 
+  const normalizedSummary = summary.toLowerCase();
+
+  const matchedKeywords = keywords.filter((k) =>
+    normalizedSummary.includes(k.toLowerCase()),
+  );
+
+  const missingKeywords = keywords.filter(
+    (k) => !normalizedSummary.includes(k.toLowerCase()),
+  );
+
   const total = keywords.length;
-  const matched = Math.floor(total * 0.6);
+  const matched = matchedKeywords.length;
   const percentage = total ? Math.round((matched / total) * 100) : 0;
 
   const getStatusClass = () => {
@@ -63,7 +74,7 @@ function Keywords({ keywords, setKeywords }: KeywordsTabProps) {
               />
             </div>
 
-            {total > 0 && (
+            {summary.trim() && total > 0 && (
               <div
                 style={{
                   marginBottom: ".8rem",
@@ -77,6 +88,15 @@ function Keywords({ keywords, setKeywords }: KeywordsTabProps) {
                 <div className="ks-bar-wrap">
                   <div className="ks-bar" style={{ width: `${percentage}%` }} />
                 </div>
+
+                {missingKeywords.length > 0 && (
+                  <div className="missing-keywords">
+                    <small>Missing:</small>{" "}
+                    <span className="missing-keyword">
+                      {missingKeywords[0]}
+                    </span>
+                  </div>
+                )}
               </div>
             )}
           </div>

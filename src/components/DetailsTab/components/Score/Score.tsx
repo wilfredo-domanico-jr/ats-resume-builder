@@ -1,6 +1,8 @@
 import './Score.css'
 
 
+
+
 function Score() {
   return (
     <>

@@ -19,22 +19,13 @@ function App() {
     "details" | "section" | "appearance"
   >("details");
 
-  const {
-    resume,
-    resetResume,
-    setResume,
-    updateContact,
-    updateKeywords,
-    sections,
-    setSections,
-    updateSummary,
-  } = useResume();
+  const resumeHooks = useResume();
 
   return (
     <>
       {showToast && <Toast message="Item deleted successfully" icon="🗑️" />}
 
-      <Header resetResume={resetResume} />
+      <Header resetResume={resumeHooks.resetResume} />
       <MobileViewToggle />
 
       <div className="app-layout">
@@ -43,24 +34,28 @@ function App() {
 
           {activeTab === "details" && (
             <DetailsTab
-              contact={resume.contact}
-              setContact={updateContact}
-              keywords={resume.keywords}
-              setKeywords={updateKeywords}
-              summary={resume.summary}
-              setSummary={updateSummary}
+              resume={resumeHooks.resume}
+              setContact={resumeHooks.updateContact}
+              setKeywords={resumeHooks.updateKeywords}
+              setSummary={resumeHooks.updateSummary}
             />
           )}
 
           {activeTab === "section" && (
-            <SectionsTab sections={sections} setSections={setSections} />
+            <SectionsTab
+              sections={resumeHooks.sections}
+              setSections={resumeHooks.setSections}
+            />
           )}
 
           {activeTab === "appearance" && <AppearanceTab />}
         </aside>
         <main className="preview-panel">
           <PreviewToolbar />
-          <PreviewScroll contact={resume.contact} summary={resume.summary} />
+          <PreviewScroll
+            contact={resumeHooks.resume.contact}
+            summary={resumeHooks.resume.summary}
+          />
         </main>
       </div>
     </>
