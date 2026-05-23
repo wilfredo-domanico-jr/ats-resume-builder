@@ -1,0 +1,157 @@
+.preview-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.resume-paper {
+  background: #fff;
+  color: #1a1917;
+  width: 100%;
+  max-width: 780px;
+  min-height: 1056px;
+  border-radius: 4px;
+  box-shadow: var(--shadow-lg);
+  padding: 2.5rem 3rem;
+  font-family: "DM Sans", sans-serif;
+  font-size: 13.5px;
+  line-height: 1.55;
+  transition: box-shadow var(--transition);
+}
+.resume-name {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: #1a1917;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.1rem;
+}
+.resume-headline {
+  font-size: 0.9rem;
+  color: #6b6760;
+  margin-bottom: 0.6rem;
+}
+.resume-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.9rem;
+  font-size: 0.8rem;
+  color: #6b6760;
+}
+.resume-contact span {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.resume-section {
+  margin-top: 1.4rem;
+}
+.resume-section-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #1a6ef5;
+  border-bottom: 1.5px solid #1a6ef5;
+  padding-bottom: 0.25rem;
+  margin-bottom: 0.7rem;
+}
+.resume-exp-item {
+  margin-bottom: 0.9rem;
+}
+.resume-exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+.resume-exp-role {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: #1a1917;
+}
+.resume-exp-dates {
+  font-size: 0.775rem;
+  color: #9b9890;
+}
+.resume-exp-company {
+  font-size: 0.8rem;
+  color: #6b6760;
+  margin-bottom: 0.35rem;
+}
+.resume-exp-bullets {
+  padding-left: 1.2rem;
+  margin: 0;
+}
+.resume-exp-bullets li {
+  margin-bottom: 0.2rem;
+  font-size: 0.825rem;
+  color: #2d2c2a;
+}
+.resume-skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.resume-skill-tag {
+  background: #f0efeb;
+  border-radius: 4px;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.775rem;
+  color: #2d2c2a;
+}
+.resume-placeholder {
+  text-align: center;
+  color: var(--text-3);
+  padding: 4rem 2rem;
+  font-size: 0.875rem;
+}
+.resume-placeholder .rp-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+.resume-placeholder h3 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-2);
+  margin-bottom: 0.4rem;
+}
+
+/* ─── RESPONSIVE ────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .preview-scroll {
+    padding: 1rem;
+  }
+  .resume-paper {
+    padding: 1.5rem 1.75rem;
+  }
+}
+
+/* ─── EMPTY STATE ANIMATION ──────────────────────────────────────────────── */
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.typing-dots span {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-3);
+  animation: pulse-dot 1.2s ease-in-out infinite;
+}
+.typing-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.typing-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
