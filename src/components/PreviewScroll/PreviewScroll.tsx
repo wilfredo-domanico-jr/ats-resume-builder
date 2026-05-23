@@ -5,9 +5,13 @@ type ContactFormProps = {
   contact: ContactForm;
 };
 function PreviewScroll({ contact }: ContactFormProps) {
-  const hasContactData = Object.values(contact).some(
+  const { links, ...textFields } = contact;
+
+  const hasTextData = Object.values(textFields).some(
     (value) => value.trim() !== "",
   );
+
+  const hasContactData = hasTextData || links.length > 0;
 
   return (
     <>
@@ -47,6 +51,18 @@ function PreviewScroll({ contact }: ContactFormProps) {
                 {contact.phone && <span>📞 {contact.phone}</span>}
 
                 {contact.location && <span>📍 {contact.location}</span>}
+
+                {contact.links.map((link, index) => (
+                  <a
+                    key={index}
+                    href={link}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ color: "#1a6ef5" }}
+                  >
+                    🔗 {link}
+                  </a>
+                ))}
               </div>
             </div>
           )}

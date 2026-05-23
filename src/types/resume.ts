@@ -4,6 +4,7 @@ export type ContactForm = {
   email: string;
   phone: string;
   location: string;
+  links: string[];
 };
 
 export type ResumeData = {

@@ -1,4 +1,5 @@
 import "./Contact.css";
+import { useState } from "react";
 import type { ContactForm } from "../../../../types/resume";
 
 type ContactTabProps = {
@@ -6,6 +7,8 @@ type ContactTabProps = {
   setContact: (value: ContactForm) => void;
 };
 function Contact({ contact, setContact }: ContactTabProps) {
+  const [linkInput, setLinkInput] = useState("");
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
@@ -15,6 +18,23 @@ function Contact({ contact, setContact }: ContactTabProps) {
     });
   };
 
+  const addLink = () => {
+    if (!linkInput.trim()) return;
+
+    setContact({
+      ...contact,
+      links: [...contact.links, linkInput.trim()],
+    });
+
+    setLinkInput("");
+  };
+
+  const removeLink = (index: number) => {
+    setContact({
+      ...contact,
+      links: contact.links.filter((_, i) => i !== index),
+    });
+  };
   return (
     <>
       <div className="section-title">Contact</div>
@@ -73,14 +93,29 @@ function Contact({ contact, setContact }: ContactTabProps) {
       <div className="field-row">
         <label>Links</label>
         <div className="links-input-row">
-          <input type="url" placeholder="https://linkedin.com/in/you" />
-          <button className="btn btn-secondary btn-sm">Add</button>
+          <input
+            type="url"
+            value={linkInput}
+            onChange={(e) => setLinkInput(e.target.value)}
+            placeholder="https://linkedin.com/in/you"
+          />
+          <button
+            type="button"
+            className="btn btn-secondary btn-sm"
+            onClick={addLink}
+          >
+            Add
+          </button>
         </div>
         <div className="links-tags-wrap">
-          <span className="link-tag">
-            🔗 http://link-here
-            <button>×</button>
-          </span>
+          {contact.links.map((link, index) => (
+            <span key={index} className="link-tag">
+              🔗 {link}
+              <button type="button" onClick={() => removeLink(index)}>
+                ×
+              </button>
+            </span>
+          ))}
         </div>
       </div>
     </>
