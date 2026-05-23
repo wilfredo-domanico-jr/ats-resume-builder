@@ -37,30 +37,42 @@ function Experience({ experience, setExperience }: ExperienceTabProps) {
     }),
   );
 
-  // Ensure every experience item has a stable id
+  // ----- START Normalize Experience IDs -----
   useEffect(() => {
     const hasMissingIds = experience.some((item) => !item.id);
 
     if (!hasMissingIds) return;
 
-    setExperience(
-      experience.map((item) =>
-        item.id
-          ? item
-          : {
-              ...item,
-              id: crypto.randomUUID(),
-            },
-      ),
-    );
+    const normalizedExperience = experience.map((item) => {
+      if (item.id) return item;
+
+      return {
+        ...item,
+        id: crypto.randomUUID(),
+      };
+    });
+
+    setExperience(normalizedExperience);
   }, [experience, setExperience]);
 
+  // ----- END Normalize Experience IDs -----
+
+  // ----- START Card Toggle Logic -----
   const toggleCard = (id: string) => {
-    setOpenCards((prev) =>
-      prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id],
-    );
+    setOpenCards((prev) => {
+      const isOpen = prev.includes(id);
+
+      if (isOpen) {
+        return prev.filter((openId) => openId !== id);
+      }
+
+      return [...prev, id];
+    });
   };
 
+  // ----- END Card Toggle Logic -----
+
+  // ----- START Add Role -----
   const addRole = () => {
     const newRole: ExperienceForm = {
       id: crypto.randomUUID(),
@@ -77,7 +89,9 @@ function Experience({ experience, setExperience }: ExperienceTabProps) {
     setExperience(updated);
     setOpenCards((prev) => [...prev, newRole.id]);
   };
+  // ----- END Add Role -----
 
+  // ----- START Drag Handlers -----
   const handleDragStart = (event: DragStartEvent) => {
     setActiveId(String(event.active.id));
   };
@@ -97,6 +111,7 @@ function Experience({ experience, setExperience }: ExperienceTabProps) {
     setExperience(arrayMove(experience, oldIndex, newIndex));
   };
 
+  // ----- END Drag Handlers -----
   const activeItem = experience.find((item) => item.id === activeId);
 
   // Don't render sortable list until ids are ready
