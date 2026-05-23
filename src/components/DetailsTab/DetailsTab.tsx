@@ -8,13 +8,18 @@ import Education from "./components/Education/Education";
 import Skills from "./components/Skills/Skills";
 import Certification from "./components/Certification/Certification";
 import Projects from "./components/Projects/Projects";
-import type { ResumeData, ContactForm } from "../../types/resume";
+import type {
+  ResumeData,
+  ContactForm,
+  ExperienceForm,
+} from "../../types/resume";
 
 type DetailsTabProps = {
   resume: ResumeData;
   setContact: (value: ContactForm) => void;
   setKeywords: (value: string[]) => void;
   setSummary: (value: string) => void;
+  setExperience: (value: ExperienceForm[]) => void;
 };
 
 function DetailsTab({
@@ -22,6 +27,7 @@ function DetailsTab({
   setContact,
   setKeywords,
   setSummary,
+  setExperience,
 }: DetailsTabProps) {
   return (
     <>
@@ -35,7 +41,10 @@ function DetailsTab({
           setKeywords={setKeywords}
         />
         <Summary summary={resume.summary} setSummary={setSummary} />
-        <Experience />
+        <Experience
+          experience={resume.experience}
+          setExperience={setExperience}
+        />
         <Education />
         <Skills />
         <Certification />

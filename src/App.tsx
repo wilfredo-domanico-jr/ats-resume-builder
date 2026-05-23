@@ -38,6 +38,7 @@ function App() {
               setContact={resumeHooks.updateContact}
               setKeywords={resumeHooks.updateKeywords}
               setSummary={resumeHooks.updateSummary}
+              setExperience={resumeHooks.updateExperience}
             />
           )}
 
