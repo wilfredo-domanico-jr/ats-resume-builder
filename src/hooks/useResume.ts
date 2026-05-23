@@ -11,12 +11,20 @@ export function useResume() {
       location: "",
       links: [],
     },
+    keywords: [],
   });
 
   const updateContact = (value: ContactForm) => {
     setResume((prev) => ({
       ...prev,
       contact: value,
+    }));
+  };
+
+  const updateKeywords = (value: string[]) => {
+    setResume((prev) => ({
+      ...prev,
+      keywords: value,
     }));
   };
 
@@ -34,6 +42,7 @@ export function useResume() {
   return {
     resume,
     updateContact,
+    updateKeywords,
     sections,
     setSections,
   };

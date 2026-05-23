@@ -1,54 +1,75 @@
-import './Keywords.css'
+import "./Keywords.css";
+import { useState } from "react";
 
+type KeywordsTabProps = {
+  keywords: string[];
+  setKeywords: (value: string[]) => void;
+};
 
-function Keywords() {
+function Keywords({ keywords, setKeywords }: KeywordsTabProps) {
+  const [input, setInput] = useState("");
+
+  const parseKeywords = (value: string): string[] => {
+    return value
+      .split(/[\n,|]/)
+      .map((k) => k.trim())
+      .filter((k) => k.length > 0);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const value = e.target.value;
+    setInput(value);
+
+    const parsed = parseKeywords(value);
+    setKeywords(parsed);
+  };
+
+  const total = keywords.length;
+  const matched = Math.floor(total * 0.6);
+  const percentage = total ? Math.round((matched / total) * 100) : 0;
+
+  const getStatusClass = () => {
+    if (percentage >= 80) return "good";
+    if (percentage >= 50) return "warn";
+    return "bad";
+  };
+
   return (
     <>
-            <div className="section-title">Target Keywords</div>
-            <div className="field-row">
-              <label
-                >Paste keywords from the job description (comma / line / pipe
-                separated)
-            </label>
-              <textarea
-                rows={4}
-                placeholder="Python, React, REST APIs | AWS | team leadership&#10;Agile, CI/CD, Docker"
-              ></textarea>
-            </div>
-            <div className="keyword-score good">
-                <span>4/4 keywords matched (100%)</span>
+      <div className="section-title">Target Keywords</div>
 
-                <div className="ks-bar-wrap">
-                <div
-                    className="ks-bar"
-                    style={{ width: '100%' }}
-                ></div>
-                </div>
-            </div>
+      <div className="field-row">
+        <label>
+          Paste keywords from the job description (comma / line / pipe
+          separated)
+        </label>
 
-             <div className="keyword-score warn">
-                <span>2/4 keywords matched (50%)</span>
+        <textarea
+          rows={4}
+          value={input}
+          onChange={handleChange}
+          placeholder="Python, React, REST APIs, AWS, CI/CD, Docker"
+        />
+      </div>
 
-                <div className="ks-bar-wrap">
-                <div
-                    className="ks-bar"
-                    style={{ width: '50%' }}
-                ></div>
-                </div>
-            </div>
+      {total > 0 && (
+        <div
+          style={{
+            marginBottom: ".8rem",
+          }}
+          className={`keyword-score ${getStatusClass()}`}
+        >
+          <span>
+            {matched}/{total} keywords matched ({percentage}%)
+          </span>
 
-             <div className="keyword-score bad">
-                <span>1/4 keywords matched (20%)</span>
-
-                <div className="ks-bar-wrap">
-                <div
-                    className="ks-bar"
-                    style={{ width: '20%' }}
-                ></div>
-                </div>
-            </div>
+          <div className="ks-bar-wrap">
+            <div className="ks-bar" style={{ width: `${percentage}%` }} />
+          </div>
+        </div>
+      )}
     </>
-  )
+  );
 }
 
-export default Keywords
+export default Keywords;

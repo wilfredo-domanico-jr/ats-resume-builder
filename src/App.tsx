@@ -19,7 +19,8 @@ function App() {
     "details" | "section" | "appearance"
   >("details");
 
-  const { resume, updateContact, sections, setSections } = useResume();
+  const { resume, updateContact, updateKeywords, sections, setSections } =
+    useResume();
 
   return (
     <>
@@ -33,7 +34,12 @@ function App() {
           <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
 
           {activeTab === "details" && (
-            <DetailsTab contact={resume.contact} setContact={updateContact} />
+            <DetailsTab
+              contact={resume.contact}
+              setContact={updateContact}
+              keywords={resume.keywords}
+              setKeywords={updateKeywords}
+            />
           )}
 
           {activeTab === "section" && (

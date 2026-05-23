@@ -16,9 +16,16 @@ import type { ContactForm } from "../../types/resume";
 type DetailsTabProps = {
   contact: ContactForm;
   setContact: (value: ContactForm) => void;
+  keywords: string[];
+  setKeywords: (value: string[]) => void;
 };
 
-function DetailsTab({ contact, setContact }: DetailsTabProps) {
+function DetailsTab({
+  contact,
+  setContact,
+  keywords,
+  setKeywords,
+}: DetailsTabProps) {
   return (
     <>
       <div className="form-panel-inner">
@@ -26,7 +33,7 @@ function DetailsTab({ contact, setContact }: DetailsTabProps) {
         <SectionNav />
         <hr />
         <Contact contact={contact} setContact={setContact} />
-        <Keywords />
+        <Keywords keywords={keywords} setKeywords={setKeywords} />
         <Summary />
         <Experience />
         <Education />
