@@ -8,6 +8,7 @@ type KeywordsTabProps = {
 
 function Keywords({ keywords, setKeywords }: KeywordsTabProps) {
   const [input, setInput] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
 
   const parseKeywords = (value: string): string[] => {
     return value
@@ -36,38 +37,51 @@ function Keywords({ keywords, setKeywords }: KeywordsTabProps) {
 
   return (
     <>
-      <div className="section-title">Target Keywords</div>
-
-      <div className="field-row">
-        <label>
-          Paste keywords from the job description (comma / line / pipe
-          separated)
-        </label>
-
-        <textarea
-          rows={4}
-          value={input}
-          onChange={handleChange}
-          placeholder="Python, React, REST APIs, AWS, CI/CD, Docker"
-        />
-      </div>
-
-      {total > 0 && (
-        <div
-          style={{
-            marginBottom: ".8rem",
-          }}
-          className={`keyword-score ${getStatusClass()}`}
+      <div className="section-card">
+        <button
+          type="button"
+          className="section-header"
+          onClick={() => setIsOpen(!isOpen)}
         >
-          <span>
-            {matched}/{total} keywords matched ({percentage}%)
-          </span>
+          <span>Target Keywords</span>
+          <span>{isOpen ? "▲" : "▼"}</span>
+        </button>
 
-          <div className="ks-bar-wrap">
-            <div className="ks-bar" style={{ width: `${percentage}%` }} />
+        {isOpen && (
+          <div className="section-body">
+            <div className="field-row">
+              <label>
+                Paste keywords from the job description (comma / line / pipe
+                separated)
+              </label>
+
+              <textarea
+                rows={4}
+                value={input}
+                onChange={handleChange}
+                placeholder="Python, React, REST APIs, AWS, CI/CD, Docker"
+              />
+            </div>
+
+            {total > 0 && (
+              <div
+                style={{
+                  marginBottom: ".8rem",
+                }}
+                className={`keyword-score ${getStatusClass()}`}
+              >
+                <span>
+                  {matched}/{total} keywords matched ({percentage}%)
+                </span>
+
+                <div className="ks-bar-wrap">
+                  <div className="ks-bar" style={{ width: `${percentage}%` }} />
+                </div>
+              </div>
+            )}
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </>
   );
 }

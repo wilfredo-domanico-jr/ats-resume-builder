@@ -24,7 +24,7 @@
   --shadow-lg: 0 8px 28px rgba(0, 0, 0, 0.12);
   --font-body: "DM Sans", sans-serif;
   --font-display: "DM Serif Display", serif;
-  --sidebar-w: 380px;
+  --sidebar-w: 450px;
   --header-h: 56px;
   --transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }

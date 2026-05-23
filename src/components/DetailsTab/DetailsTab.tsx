@@ -1,6 +1,5 @@
 import "./DetailsTab.css";
 import Score from "./components/Score/Score";
-import SectionNav from "./components/SectionNav/SectionNav";
 import Contact from "./components/Contact/Contact";
 import Keywords from "./components/Keywords/Keywords";
 import Summary from "./components/Summary/Summary";
@@ -9,8 +8,6 @@ import Education from "./components/Education/Education";
 import Skills from "./components/Skills/Skills";
 import Certification from "./components/Certification/Certification";
 import Projects from "./components/Projects/Projects";
-import Languages from "./components/Languages/Languages";
-import Volunteer from "./components/Volunteer/Volunteer";
 import type { ContactForm } from "../../types/resume";
 
 type DetailsTabProps = {
@@ -30,7 +27,6 @@ function DetailsTab({
     <>
       <div className="form-panel-inner">
         <Score />
-        <SectionNav />
         <hr />
         <Contact contact={contact} setContact={setContact} />
         <Keywords keywords={keywords} setKeywords={setKeywords} />
@@ -40,8 +36,6 @@ function DetailsTab({
         <Skills />
         <Certification />
         <Projects />
-        <Languages />
-        <Volunteer />
       </div>
     </>
   );
