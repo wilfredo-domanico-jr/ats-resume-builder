@@ -5,12 +5,60 @@ type Theme = {
   id: string;
   label: string;
   header: string;
+  accent: string;
+  bg: string;
 };
 
 const themes: Theme[] = [
-  { id: "blue", label: "Blue", header: "#3b82f6" },
-  { id: "green", label: "Green", header: "#22c55e" },
-  { id: "purple", label: "Purple", header: "#a855f7" },
+  {
+    id: "blue",
+    label: "Blue",
+    header: "#1a6ef5",
+    accent: "#1a6ef5",
+    bg: "#ffffff",
+  },
+  {
+    id: "slate",
+    label: "Slate",
+    header: "#374151",
+    accent: "#374151",
+    bg: "#ffffff",
+  },
+  {
+    id: "green",
+    label: "Green",
+    header: "#16a34a",
+    accent: "#16a34a",
+    bg: "#ffffff",
+  },
+  {
+    id: "red",
+    label: "Red",
+    header: "#dc2626",
+    accent: "#dc2626",
+    bg: "#ffffff",
+  },
+  {
+    id: "purple",
+    label: "Purple",
+    header: "#7c3aed",
+    accent: "#7c3aed",
+    bg: "#ffffff",
+  },
+  {
+    id: "orange",
+    label: "Orange",
+    header: "#ea580c",
+    accent: "#ea580c",
+    bg: "#ffffff",
+  },
+  {
+    id: "mono",
+    label: "Mono",
+    header: "#1a1917",
+    accent: "#1a1917",
+    bg: "#ffffff",
+  },
 ];
 
 function AppearanceTab() {
@@ -85,23 +133,23 @@ function AppearanceTab() {
 
       <div className="export-group">
         <button className="export-btn" onClick={exportTxt}>
-          📄 Plain Text .txt
+          <span className="eb-icon">📄</span> Plain Text .txt
         </button>
 
         <button className="export-btn" onClick={exportPDF}>
-          🖨️ Print / PDF
+          <span className="eb-icon">🖨️</span> Print / PDF
         </button>
 
         <button className="export-btn" onClick={copyText}>
-          📋 Copy Text
+          <span className="eb-icon">📋</span> Copy Text
         </button>
 
         <button className="export-btn" onClick={saveDraft}>
-          💾 Save Draft
+          <span className="eb-icon">💾</span> Save Draft
         </button>
 
         <button className="export-btn" onClick={loadDraft}>
-          📂 Load Draft
+          <span className="eb-icon">📂</span> Load Draft
         </button>
       </div>
     </div>
