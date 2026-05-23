@@ -10,12 +10,30 @@ import SectionsTab from "./components/SectionsTab/SectionsTab";
 import AppearanceTab from "./components/AppearanceTab/AppearanceTab";
 import PreviewToolbar from "./components/PreviewToolbar/PreviewToolbar";
 import PreviewScroll from "./components/PreviewScroll/PreviewScroll";
-
+import type { ResumeData } from "./types/resume";
+import type { ContactForm } from "./types/resume";
 function App() {
   const [showToast, setShowToast] = useState(false);
 
   type Tab = "details" | "section" | "appearance";
   const [activeTab, setActiveTab] = useState<Tab>("details");
+
+  const [resume, setResume] = useState<ResumeData>({
+    contact: {
+      fullName: "",
+      headline: "",
+      email: "",
+      phone: "",
+      location: "",
+    },
+  });
+
+  const updateContact = (value: ContactForm) => {
+    setResume((prev) => ({
+      ...prev,
+      contact: value,
+    }));
+  };
 
   const [sections, setSections] = useState([
     {
@@ -71,7 +89,9 @@ function App() {
         <aside className="form-panel">
           <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
 
-          {activeTab === "details" && <DetailsTab />}
+          {activeTab === "details" && (
+            <DetailsTab contact={resume.contact} setContact={updateContact} />
+          )}
 
           {activeTab === "section" && (
             <SectionsTab sections={sections} setSections={setSections} />
@@ -81,7 +101,7 @@ function App() {
         </aside>
         <main className="preview-panel">
           <PreviewToolbar />
-          <PreviewScroll />
+          <PreviewScroll contact={resume.contact} />
         </main>
       </div>
     </>

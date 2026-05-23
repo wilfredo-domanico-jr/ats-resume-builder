@@ -11,15 +11,21 @@ import Certification from "./components/Certification/Certification";
 import Projects from "./components/Projects/Projects";
 import Languages from "./components/Languages/Languages";
 import Volunteer from "./components/Volunteer/Volunteer";
+import type { ContactForm } from "../../types/resume";
 
-function DetailsTab() {
+type DetailsTabProps = {
+  contact: ContactForm;
+  setContact: (value: ContactForm) => void;
+};
+
+function DetailsTab({ contact, setContact }: DetailsTabProps) {
   return (
     <>
       <div className="form-panel-inner">
         <Score />
         <SectionNav />
         <hr />
-        <Contact />
+        <Contact contact={contact} setContact={setContact} />
         <Keywords />
         <Summary />
         <Experience />
