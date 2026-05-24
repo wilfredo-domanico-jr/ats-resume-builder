@@ -24,30 +24,47 @@ function PreviewScroll({ resume }: ContactFormProps) {
   const hasEducationData = resume.education.length > 0;
   const hasSkillData = resume.skills.length > 0;
   const hasCertificationData = resume.certifications.length > 0;
-  const hasProjecData = resume.projects.length > 0;
+  const hasProjectData = resume.projects.length > 0;
 
-  const hasAnyData =
-    hasContactData ||
-    hasProfessionalSummary ||
-    hasExperienceData ||
-    hasEducationData ||
-    hasSkillData ||
-    hasCertificationData ||
-    hasProjecData;
+  const sections = [
+    hasContactData && <ContactPreview contact={resume.contact} />,
+    hasProfessionalSummary && <SummaryPreview summary={resume.summary} />,
+    hasExperienceData && <ExperiencePreview experience={resume.experience} />,
+    hasEducationData && <EducationPreview education={resume.education} />,
+    hasSkillData && <SkillsPreview skills={resume.skills} />,
+    hasCertificationData && (
+      <CertificationsPreview certifications={resume.certifications} />
+    ),
+    hasProjectData && <ProjectsPreview projects={resume.projects} />,
+  ].filter(Boolean);
+
+  const pages: any[][] = [];
+  let currentPage: any[] = [];
+
+  sections.forEach((section) => {
+    // max 3 sections per page
+    if (currentPage.length === 3) {
+      pages.push(currentPage);
+      currentPage = [];
+    }
+    currentPage.push(section);
+  });
+
+  if (currentPage.length) {
+    pages.push(currentPage);
+  }
+
+  const hasAnyData = sections.length > 0;
 
   return (
     <>
       <div className="preview-scroll">
-        <div className="resume-paper">
-          {!hasAnyData && (
+        {!hasAnyData ? (
+          <div className="resume-paper">
             <div className="resume-placeholder">
               <div className="rp-icon">📄</div>
-
               <h3>Your resume will appear here</h3>
-
               <p>Fill in your details — preview updates automatically.</p>
-
-              <br />
 
               <div className="typing-dots">
                 <span></span>
@@ -55,30 +72,16 @@ function PreviewScroll({ resume }: ContactFormProps) {
                 <span></span>
               </div>
             </div>
-          )}
-
-          {hasContactData && <ContactPreview contact={resume.contact} />}
-
-          {hasProfessionalSummary && (
-            <SummaryPreview summary={resume.summary} />
-          )}
-
-          {hasExperienceData && (
-            <ExperiencePreview experience={resume.experience} />
-          )}
-
-          {hasEducationData && (
-            <EducationPreview education={resume.education} />
-          )}
-
-          {hasSkillData && <SkillsPreview skills={resume.skills} />}
-
-          {hasCertificationData && (
-            <CertificationsPreview certifications={resume.certifications} />
-          )}
-
-          {hasProjecData && <ProjectsPreview projects={resume.projects} />}
-        </div>
+          </div>
+        ) : (
+          <div className="resume-pages">
+            {pages.map((page, pageIndex) => (
+              <div key={pageIndex} className="resume-paper">
+                {page}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </>
   );

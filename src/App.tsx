@@ -25,7 +25,10 @@ function App() {
     <>
       {showToast && <Toast message="Item deleted successfully" icon="🗑️" />}
 
-      <Header resetResume={resumeHooks.resetResume} />
+      <Header
+        resetResume={resumeHooks.resetResume}
+        loadSamples={resumeHooks.loadSamples}
+      />
       <MobileViewToggle />
 
       <div className="app-layout">

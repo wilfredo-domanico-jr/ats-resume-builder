@@ -2,9 +2,10 @@ import "./Header.css";
 
 type HeaderProps = {
   resetResume: () => void;
+  loadSamples: () => void;
 };
 
-function Header({ resetResume }: HeaderProps) {
+function Header({ resetResume, loadSamples }: HeaderProps) {
   return (
     <>
       <header className="header">
@@ -17,7 +18,9 @@ function Header({ resetResume }: HeaderProps) {
           <button className="theme-toggle">
             <span>🌙</span>
           </button>
-          <button className="btn btn-secondary btn-sm">Load sample</button>
+          <button onClick={loadSamples} className="btn btn-secondary btn-sm">
+            Load sample
+          </button>
           <button onClick={resetResume} className="btn btn-ghost btn-sm">
             Reset
           </button>
