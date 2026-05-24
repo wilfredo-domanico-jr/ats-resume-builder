@@ -14,6 +14,7 @@ import type {
   ExperienceForm,
   EducationForm,
   SkillsForm,
+  CertificationForm,
 } from "../../types/resume";
 
 type DetailsTabProps = {
@@ -24,6 +25,7 @@ type DetailsTabProps = {
   setExperience: (value: ExperienceForm[]) => void;
   setEducation: (value: EducationForm[]) => void;
   setSkills: (value: SkillsForm[]) => void;
+  setCertifications: (value: CertificationForm[]) => void;
 };
 
 function DetailsTab({
@@ -34,6 +36,7 @@ function DetailsTab({
   setExperience,
   setEducation,
   setSkills,
+  setCertifications,
 }: DetailsTabProps) {
   return (
     <>
@@ -53,7 +56,10 @@ function DetailsTab({
         />
         <Education education={resume.education} setEducation={setEducation} />
         <Skills skills={resume.skills} setSkills={setSkills} />
-        <Certification />
+        <Certification
+          certifications={resume.certifications}
+          setCertifications={setCertifications}
+        />
         <Projects />
       </div>
     </>

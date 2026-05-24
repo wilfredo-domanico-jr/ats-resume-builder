@@ -41,6 +41,7 @@ function App() {
               setExperience={resumeHooks.updateExperience}
               setEducation={resumeHooks.updateEducation}
               setSkills={resumeHooks.updateSkills}
+              setCertifications={resumeHooks.updateCertications}
             />
           )}
 

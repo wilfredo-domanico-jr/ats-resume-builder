@@ -33,6 +33,13 @@ export type SkillsForm = {
   skillList: string[];
 };
 
+export type CertificationForm = {
+  id: string;
+  name: string;
+  issuer: string;
+  date: string;
+};
+
 export type ResumeData = {
   contact: ContactForm;
   keywords: string[];
@@ -40,4 +47,5 @@ export type ResumeData = {
   experience: ExperienceForm[];
   education: EducationForm[];
   skills: SkillsForm[];
+  certifications: CertificationForm[];
 };

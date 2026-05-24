@@ -5,6 +5,7 @@ import type {
   ExperienceForm,
   EducationForm,
   SkillsForm,
+  CertificationForm,
 } from "../types/resume";
 
 export function useResume() {
@@ -22,6 +23,7 @@ export function useResume() {
     experience: [],
     education: [],
     skills: [],
+    certifications: [],
   };
 
   const initialSections = [
@@ -54,6 +56,7 @@ export function useResume() {
     experience: [],
     education: [],
     skills: [],
+    certifications: [],
   });
 
   const updateContact = (value: ContactForm) => {
@@ -98,6 +101,13 @@ export function useResume() {
     }));
   };
 
+  const updateCertications = (value: CertificationForm[]) => {
+    setResume((prev) => ({
+      ...prev,
+      certifications: value,
+    }));
+  };
+
   const [sections, setSections] = useState([
     { id: "summary", label: "Professional Summary", enabled: true },
     { id: "experience", label: "Experience", enabled: true },
@@ -120,5 +130,6 @@ export function useResume() {
     updateExperience,
     updateEducation,
     updateSkills,
+    updateCertications,
   };
 }
