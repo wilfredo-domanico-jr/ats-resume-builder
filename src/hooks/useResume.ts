@@ -1,5 +1,10 @@
 import { useState } from "react";
-import type { ResumeData, ContactForm, ExperienceForm } from "../types/resume";
+import type {
+  ResumeData,
+  ContactForm,
+  ExperienceForm,
+  EducationForm,
+} from "../types/resume";
 
 export function useResume() {
   const initialResume: ResumeData = {
@@ -14,6 +19,7 @@ export function useResume() {
     keywords: [],
     summary: "",
     experience: [],
+    education: [],
   };
 
   const initialSections = [
@@ -44,6 +50,7 @@ export function useResume() {
     keywords: [],
     summary: "",
     experience: [],
+    education: [],
   });
 
   const updateContact = (value: ContactForm) => {
@@ -74,6 +81,13 @@ export function useResume() {
     }));
   };
 
+  const updateEducation = (value: EducationForm[]) => {
+    setResume((prev) => ({
+      ...prev,
+      education: value,
+    }));
+  };
+
   const [sections, setSections] = useState([
     { id: "summary", label: "Professional Summary", enabled: true },
     { id: "experience", label: "Experience", enabled: true },
@@ -94,5 +108,6 @@ export function useResume() {
     setSections,
     updateSummary,
     updateExperience,
+    updateEducation,
   };
 }

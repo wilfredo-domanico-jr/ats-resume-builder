@@ -18,9 +18,19 @@ export type ExperienceForm = {
   bulletPoints: string[];
 };
 
+export type EducationForm = {
+  id: string;
+  degree: string;
+  school: string;
+  fieldOfStudy: string;
+  startDate: string;
+  endDate: string;
+};
+
 export type ResumeData = {
   contact: ContactForm;
   keywords: string[];
   summary: string;
   experience: ExperienceForm[];
+  education: EducationForm[];
 };

@@ -39,6 +39,7 @@ function App() {
               setKeywords={resumeHooks.updateKeywords}
               setSummary={resumeHooks.updateSummary}
               setExperience={resumeHooks.updateExperience}
+              setEducation={resumeHooks.updateEducation}
             />
           )}
 
@@ -53,9 +54,7 @@ function App() {
         </aside>
         <main className="preview-panel">
           <PreviewToolbar />
-          <PreviewScroll
-            resume={resumeHooks.resume}
-          />
+          <PreviewScroll resume={resumeHooks.resume} />
         </main>
       </div>
     </>
