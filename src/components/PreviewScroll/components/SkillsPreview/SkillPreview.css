@@ -1,0 +1,12 @@
+.resume-skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.resume-skill-tag {
+  background: #f0efeb;
+  border-radius: 4px;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.775rem;
+  color: #2d2c2a;
+}

@@ -27,10 +27,17 @@ export type EducationForm = {
   endDate: string;
 };
 
+export type SkillsForm = {
+  id: string;
+  groupName: string;
+  skillList: string[];
+};
+
 export type ResumeData = {
   contact: ContactForm;
   keywords: string[];
   summary: string;
   experience: ExperienceForm[];
   education: EducationForm[];
+  skills: SkillsForm[];
 };

@@ -24,7 +24,7 @@ type EducationTabProps = {
   setEducation: (value: EducationForm[]) => void;
 };
 function Education({ education, setEducation }: EducationTabProps) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [openCards, setOpenCards] = useState<string[]>([]);
   const [activeId, setActiveId] = useState<string | null>(null);
 
