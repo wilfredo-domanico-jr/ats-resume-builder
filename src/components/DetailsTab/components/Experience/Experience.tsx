@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { ExperienceForm } from "../../../../types/resume";
-import ExperienceCard from "./ExperienceCard";
+import ExperienceCard from "./components/ExperienceCard";
 
 import {
   DndContext,

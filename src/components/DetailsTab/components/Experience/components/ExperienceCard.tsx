@@ -1,5 +1,5 @@
 import type React from "react";
-import type { ExperienceForm } from "../../../../types/resume";
+import type { ExperienceForm } from "../../../../../types/resume";
 import BulletList from "./BulletList";
 
 import { useSortable } from "@dnd-kit/sortable";

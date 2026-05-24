@@ -54,8 +54,7 @@ function App() {
         <main className="preview-panel">
           <PreviewToolbar />
           <PreviewScroll
-            contact={resumeHooks.resume.contact}
-            summary={resumeHooks.resume.summary}
+            resume={resumeHooks.resume}
           />
         </main>
       </div>

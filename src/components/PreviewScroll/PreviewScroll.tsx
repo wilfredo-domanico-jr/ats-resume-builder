@@ -1,27 +1,30 @@
 import "./PreviewScroll.css";
-import type { ContactForm } from "../../types/resume";
+import type { ResumeData } from "../../types/resume";
+import ContactPreview from "./components/ContactPreview/ContactPreview";
+import SummaryPreview from "./components/SummaryPreview/SummaryPreview";
+import ExperiencePreview from "./components/ExperiencePreview/ExperiencePreview";
 
 type ContactFormProps = {
-  contact: ContactForm;
-  summary: string;
+  resume: ResumeData;
 };
-function PreviewScroll({ contact, summary }: ContactFormProps) {
-  const { links, ...textFields } = contact;
+function PreviewScroll({ resume }: ContactFormProps) {
+  const { links, ...textFields } = resume.contact;
 
   const hasTextData = Object.values(textFields).some(
     (value) => value.trim() !== "",
   );
 
   const hasContactData = hasTextData || links.length > 0;
+  const hasProfessionalSummary = resume.summary.trim() !== "";
+  const hasExperienceData = resume.experience.length > 0;
 
-  const hasProfessionalSummary = summary.trim() !== "";
-
-  const hasAnyData = hasContactData || hasProfessionalSummary;
+  const hasAnyData =
+    hasContactData || hasProfessionalSummary || hasExperienceData;
 
   return (
     <>
       <div className="preview-scroll">
-        <div className="resume-paper" id="resumePaper">
+        <div className="resume-paper">
           {!hasAnyData && (
             <div className="resume-placeholder">
               <div className="rp-icon">📄</div>
@@ -40,52 +43,14 @@ function PreviewScroll({ contact, summary }: ContactFormProps) {
             </div>
           )}
 
-          {hasContactData && (
-            <div className="resume-header">
-              {contact.fullName && (
-                <div className="resume-name">{contact.fullName}</div>
-              )}
-
-              {contact.headline && (
-                <div className="resume-headline">{contact.headline}</div>
-              )}
-
-              <div className="resume-contact">
-                {contact.email && <span>✉ {contact.email}</span>}
-
-                {contact.phone && <span>📞 {contact.phone}</span>}
-
-                {contact.location && <span>📍 {contact.location}</span>}
-
-                {contact.links.map((link, index) => (
-                  <a
-                    key={index}
-                    href={link}
-                    target="_blank"
-                    rel="noreferrer"
-                    style={{ color: "#1a6ef5" }}
-                  >
-                    🔗 {link}
-                  </a>
-                ))}
-              </div>
-            </div>
-          )}
+          {hasContactData && <ContactPreview contact={resume.contact} />}
 
           {hasProfessionalSummary && (
-            <div className="resume-section">
-              <div className="resume-section-title">PROFESSIONAL SUMMARY</div>
+            <SummaryPreview summary={resume.summary} />
+          )}
 
-              <p
-                style={{
-                  fontSize: ".85rem",
-                  color: "#2d2c2a",
-                  lineHeight: 1.6,
-                }}
-              >
-                {summary}
-              </p>
-            </div>
+          {hasExperienceData && (
+            <ExperiencePreview experience={resume.experience} />
           )}
         </div>
       </div>
