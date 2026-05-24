@@ -3,6 +3,7 @@ import type { ResumeData } from "../../types/resume";
 import ContactPreview from "./components/ContactPreview/ContactPreview";
 import SummaryPreview from "./components/SummaryPreview/SummaryPreview";
 import ExperiencePreview from "./components/ExperiencePreview/ExperiencePreview";
+import EducationPreview from "./components/EducationPreview/EducationPreview";
 
 type ContactFormProps = {
   resume: ResumeData;
@@ -17,9 +18,13 @@ function PreviewScroll({ resume }: ContactFormProps) {
   const hasContactData = hasTextData || links.length > 0;
   const hasProfessionalSummary = resume.summary.trim() !== "";
   const hasExperienceData = resume.experience.length > 0;
+  const hasEducationData = resume.education.length > 0;
 
   const hasAnyData =
-    hasContactData || hasProfessionalSummary || hasExperienceData;
+    hasContactData ||
+    hasProfessionalSummary ||
+    hasExperienceData ||
+    hasEducationData;
 
   return (
     <>
@@ -51,6 +56,10 @@ function PreviewScroll({ resume }: ContactFormProps) {
 
           {hasExperienceData && (
             <ExperiencePreview experience={resume.experience} />
+          )}
+
+          {hasEducationData && (
+            <EducationPreview education={resume.education} />
           )}
         </div>
       </div>
