@@ -40,6 +40,13 @@ export type CertificationForm = {
   date: string;
 };
 
+export type ProjectForm = {
+  id: string;
+  name: string;
+  description: string;
+  url: string;
+};
+
 export type ResumeData = {
   contact: ContactForm;
   keywords: string[];
@@ -48,4 +55,5 @@ export type ResumeData = {
   education: EducationForm[];
   skills: SkillsForm[];
   certifications: CertificationForm[];
+  projects: ProjectForm[];
 };

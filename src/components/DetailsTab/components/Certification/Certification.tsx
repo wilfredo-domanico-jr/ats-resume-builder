@@ -28,7 +28,7 @@ function Certification({
   certifications,
   setCertifications,
 }: CertificationTabProps) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [openCards, setOpenCards] = useState<string[]>([]);
   const [activeId, setActiveId] = useState<string | null>(null);
 

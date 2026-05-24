@@ -6,6 +6,7 @@ import ExperiencePreview from "./components/ExperiencePreview/ExperiencePreview"
 import EducationPreview from "./components/EducationPreview/EducationPreview";
 import SkillsPreview from "./components/SkillsPreview/SkillsPreview";
 import CertificationsPreview from "./components/CertificationsPreview/CertificationsPreview";
+import ProjectsPreview from "./components/ProjectsPreview/ProjectsPreview";
 
 type ContactFormProps = {
   resume: ResumeData;
@@ -23,6 +24,7 @@ function PreviewScroll({ resume }: ContactFormProps) {
   const hasEducationData = resume.education.length > 0;
   const hasSkillData = resume.skills.length > 0;
   const hasCertificationData = resume.certifications.length > 0;
+  const hasProjecData = resume.projects.length > 0;
 
   const hasAnyData =
     hasContactData ||
@@ -30,7 +32,8 @@ function PreviewScroll({ resume }: ContactFormProps) {
     hasExperienceData ||
     hasEducationData ||
     hasSkillData ||
-    hasCertificationData;
+    hasCertificationData ||
+    hasProjecData;
 
   return (
     <>
@@ -73,6 +76,8 @@ function PreviewScroll({ resume }: ContactFormProps) {
           {hasCertificationData && (
             <CertificationsPreview certifications={resume.certifications} />
           )}
+
+          {hasProjecData && <ProjectsPreview projects={resume.projects} />}
         </div>
       </div>
     </>
