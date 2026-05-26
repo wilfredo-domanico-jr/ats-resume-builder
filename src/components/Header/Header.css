@@ -26,6 +26,9 @@
   font-size: 1.15rem;
   color: var(--text);
   letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 .header-logo span {
   color: var(--accent);
