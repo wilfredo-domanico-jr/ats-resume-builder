@@ -14,7 +14,6 @@
   transition:
     background var(--transition),
     border-color var(--transition);
-    
 }
 .form-panel-inner {
   padding: 1.25rem;
@@ -25,7 +24,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  background: var(--bg);
+  background: var(--bg) !important;
   transition: background var(--transition);
 }
 

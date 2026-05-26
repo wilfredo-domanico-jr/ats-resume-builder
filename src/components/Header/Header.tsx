@@ -1,4 +1,5 @@
 import "./Header.css";
+import { useState, useEffect } from "react";
 
 type HeaderProps = {
   resetResume: () => void;
@@ -6,6 +7,21 @@ type HeaderProps = {
 };
 
 function Header({ resetResume, loadSamples }: HeaderProps) {
+  const [isDark, setIsDark] = useState(() => {
+    return document.documentElement.getAttribute("data-theme") === "dark";
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute(
+      "data-theme",
+      isDark ? "dark" : "light",
+    );
+  }, [isDark]);
+
+  const toggleTheme = () => {
+    setIsDark((prev) => !prev);
+  };
+
   return (
     <>
       <header className="header">
@@ -15,8 +31,12 @@ function Header({ resetResume, loadSamples }: HeaderProps) {
           </div>
         </div>
         <div className="header-right">
-          <button className="theme-toggle">
-            <span>🌙</span>
+          <button
+            className="theme-toggle"
+            onClick={toggleTheme}
+            title="Toggle Dark Mode"
+          >
+            <span>{isDark ? "☀️" : "🌙"}</span>
           </button>
           <button onClick={loadSamples} className="btn btn-secondary btn-sm">
             Load sample
