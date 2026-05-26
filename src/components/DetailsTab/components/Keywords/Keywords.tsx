@@ -1,5 +1,5 @@
 import "./Keywords.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 type KeywordsTabProps = {
   summary: string;
@@ -10,6 +10,21 @@ type KeywordsTabProps = {
 function Keywords({ summary, keywords, setKeywords }: KeywordsTabProps) {
   const [input, setInput] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (keywords.length > 0) {
+      const currentParsed = input
+        .split(/[\n,|]/)
+        .map((k) => k.trim())
+        .filter(Boolean);
+
+      if (JSON.stringify(currentParsed) !== JSON.stringify(keywords)) {
+        setInput(keywords.join(", "));
+      }
+    } else {
+      setInput("");
+    }
+  }, [keywords]);
 
   const parseKeywords = (value: string): string[] => {
     return value
