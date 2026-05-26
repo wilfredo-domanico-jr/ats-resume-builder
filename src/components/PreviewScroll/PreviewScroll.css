@@ -1,3 +1,7 @@
+a {
+  color: var(--resume-theme-header, #1a6ef5);
+}
+
 .preview-scroll {
   flex: 1;
   overflow-y: auto;
@@ -31,6 +35,16 @@
   flex-shrink: 0;
 }
 
+.resume-link {
+  color: var(--resume-theme-header, #1a6ef5);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.resume-link:hover {
+  text-decoration: underline;
+  opacity: 0.85;
+}
 
 .resume-name {
   font-family: var(--font-display);
@@ -64,8 +78,8 @@
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #1a6ef5;
-  border-bottom: 1.5px solid #1a6ef5;
+  color: var(--resume-theme-header, #1a6ef5);
+  border-bottom: 1.5px solid var(--resume-theme-accent, #1a6ef5);
   padding-bottom: 0.25rem;
   margin-bottom: 0.7rem;
 }

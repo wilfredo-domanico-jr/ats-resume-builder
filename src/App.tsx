@@ -56,7 +56,13 @@ function App() {
             />
           )}
 
-          {activeTab === "appearance" && <AppearanceTab />}
+          {activeTab === "appearance" && (
+            <AppearanceTab
+              themes={resumeHooks.themes}
+              resumeTheme={resumeHooks.resumeTheme}
+              setResumeTheme={resumeHooks.setResumeTheme}
+            />
+          )}
         </aside>
         <main className="preview-panel">
           <PreviewToolbar />

@@ -1,3 +1,4 @@
+import React from "react";
 import "./PreviewScroll.css";
 import type { ResumeData } from "../../types/resume";
 import SummaryPreview from "./components/SummaryPreview/SummaryPreview";
@@ -54,9 +55,12 @@ function PreviewScroll({ resume, sections }: PreviewScrollProps) {
   };
 
   const orderedSectionsToRender = sections
-    .filter((section) => section.enabled)
-    .map((section) => componentRegistry[section.id])
-    .filter(Boolean);
+    .filter((section) => section.enabled && componentRegistry[section.id])
+    .map((section) => (
+      <React.Fragment key={section.id}>
+        {componentRegistry[section.id]}
+      </React.Fragment>
+    ));
 
   const hasAnyData = hasContactData || orderedSectionsToRender.length > 0;
 

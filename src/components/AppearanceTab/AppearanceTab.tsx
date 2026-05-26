@@ -1,69 +1,33 @@
 import "./AppearanceTab.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-type Theme = {
-  id: string;
-  label: string;
-  header: string;
-  accent: string;
-  bg: string;
+import type { Theme } from "../../types/resume";
+
+type AppearanceTabProps = {
+  themes: Theme[];
+  resumeTheme: Theme;
+  setResumeTheme: (value: Theme) => void;
 };
 
-const themes: Theme[] = [
-  {
-    id: "blue",
-    label: "Blue",
-    header: "#1a6ef5",
-    accent: "#1a6ef5",
-    bg: "#ffffff",
-  },
-  {
-    id: "slate",
-    label: "Slate",
-    header: "#374151",
-    accent: "#374151",
-    bg: "#ffffff",
-  },
-  {
-    id: "green",
-    label: "Green",
-    header: "#16a34a",
-    accent: "#16a34a",
-    bg: "#ffffff",
-  },
-  {
-    id: "red",
-    label: "Red",
-    header: "#dc2626",
-    accent: "#dc2626",
-    bg: "#ffffff",
-  },
-  {
-    id: "purple",
-    label: "Purple",
-    header: "#7c3aed",
-    accent: "#7c3aed",
-    bg: "#ffffff",
-  },
-  {
-    id: "orange",
-    label: "Orange",
-    header: "#ea580c",
-    accent: "#ea580c",
-    bg: "#ffffff",
-  },
-  {
-    id: "mono",
-    label: "Mono",
-    header: "#1a1917",
-    accent: "#1a1917",
-    bg: "#ffffff",
-  },
-];
-
-function AppearanceTab() {
+function AppearanceTab({
+  themes,
+  resumeTheme,
+  setResumeTheme,
+}: AppearanceTabProps) {
   const [fontSize, setFontSize] = useState(13);
-  const [resumeTheme, setResumeTheme] = useState("blue");
+
+  useEffect(() => {
+    if (resumeTheme) {
+      document.documentElement.style.setProperty(
+        "--resume-theme-header",
+        resumeTheme.header,
+      );
+      document.documentElement.style.setProperty(
+        "--resume-theme-accent",
+        resumeTheme.accent,
+      );
+    }
+  }, [resumeTheme]);
 
   const updateFontSize = (value: number) => {
     setFontSize(value);
@@ -73,12 +37,6 @@ function AppearanceTab() {
     );
   };
 
-  const exportTxt = () => console.log("Export TXT");
-  const exportPDF = () => window.print();
-  const copyText = () => console.log("Copy text");
-  const saveDraft = () => console.log("Save draft");
-  const loadDraft = () => console.log("Load draft");
-
   return (
     <div className="form-panel-inner">
       <div className="section-title">Resume Theme</div>
@@ -87,10 +45,10 @@ function AppearanceTab() {
         {themes.map((t) => (
           <div
             key={t.id}
-            className={`theme-swatch ${resumeTheme === t.id ? "active" : ""}`}
+            className={`theme-swatch ${resumeTheme.id === t.id ? "active" : ""}`}
             style={{ background: t.header }}
             title={t.label}
-            onClick={() => setResumeTheme(t.id)}
+            onClick={() => setResumeTheme(t)}
           />
         ))}
       </div>
@@ -128,30 +86,6 @@ function AppearanceTab() {
       </div>
 
       <hr />
-
-      <div className="section-title">Export</div>
-
-      <div className="export-group">
-        <button className="export-btn" onClick={exportTxt}>
-          <span className="eb-icon">📄</span> Plain Text .txt
-        </button>
-
-        <button className="export-btn" onClick={exportPDF}>
-          <span className="eb-icon">🖨️</span> Print / PDF
-        </button>
-
-        <button className="export-btn" onClick={copyText}>
-          <span className="eb-icon">📋</span> Copy Text
-        </button>
-
-        <button className="export-btn" onClick={saveDraft}>
-          <span className="eb-icon">💾</span> Save Draft
-        </button>
-
-        <button className="export-btn" onClick={loadDraft}>
-          <span className="eb-icon">📂</span> Load Draft
-        </button>
-      </div>
     </div>
   );
 }

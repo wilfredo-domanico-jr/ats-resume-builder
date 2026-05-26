@@ -47,6 +47,14 @@ export type ProjectForm = {
   url: string;
 };
 
+export type Theme = {
+  id: string;
+  label: string;
+  header: string;
+  accent: string;
+  bg: string;
+};
+
 export type ResumeData = {
   contact: ContactForm;
   keywords: string[];

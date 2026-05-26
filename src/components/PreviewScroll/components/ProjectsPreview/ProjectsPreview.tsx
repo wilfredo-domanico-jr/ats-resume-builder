@@ -19,7 +19,6 @@ function ProjectsPreview({ projects }: ProjectsPreviewProps) {
               target="_blank"
               style={{
                 fontSize: ".75rem",
-                color: "#2563eb",
                 fontWeight: 400,
                 marginLeft: ".4rem",
               }}

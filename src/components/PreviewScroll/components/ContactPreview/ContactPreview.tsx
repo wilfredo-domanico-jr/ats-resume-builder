@@ -23,13 +23,7 @@ function ContactPreview({ contact }: ContactPreviewProps) {
           {contact.location && <span>📍 {contact.location}</span>}
 
           {contact.links.map((link, index) => (
-            <a
-              key={index}
-              href={link}
-              target="_blank"
-              rel="noreferrer"
-              style={{ color: "#1a6ef5" }}
-            >
+            <a key={index} href={link} target="_blank" rel="noreferrer">
               🔗 {link}
             </a>
           ))}

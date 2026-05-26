@@ -7,6 +7,7 @@ import type {
   SkillsForm,
   CertificationForm,
   ProjectForm,
+  Theme,
 } from "../types/resume";
 
 export function useResume() {
@@ -397,6 +398,60 @@ export function useResume() {
 
   const [sections, setSections] = useState(initialSections);
 
+  const themes: Theme[] = [
+    {
+      id: "blue",
+      label: "Blue",
+      header: "#1a6ef5",
+      accent: "#1a6ef5",
+      bg: "#ffffff",
+    },
+    {
+      id: "slate",
+      label: "Slate",
+      header: "#374151",
+      accent: "#374151",
+      bg: "#ffffff",
+    },
+    {
+      id: "green",
+      label: "Green",
+      header: "#16a34a",
+      accent: "#16a34a",
+      bg: "#ffffff",
+    },
+    {
+      id: "red",
+      label: "Red",
+      header: "#dc2626",
+      accent: "#dc2626",
+      bg: "#ffffff",
+    },
+    {
+      id: "purple",
+      label: "Purple",
+      header: "#7c3aed",
+      accent: "#7c3aed",
+      bg: "#ffffff",
+    },
+    {
+      id: "orange",
+      label: "Orange",
+      header: "#ea580c",
+      accent: "#ea580c",
+      bg: "#ffffff",
+    },
+    {
+      id: "mono",
+      label: "Mono",
+      header: "#1a1917",
+      accent: "#1a1917",
+      bg: "#ffffff",
+    },
+  ];
+
+  const [resumeTheme, setResumeTheme] = useState(themes[0]);
+
   return {
     resume,
     resetResume,
@@ -411,5 +466,8 @@ export function useResume() {
     updateSkills,
     updateCertications,
     updateProjects,
+    themes,
+    resumeTheme,
+    setResumeTheme,
   };
 }
