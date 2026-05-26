@@ -129,11 +129,12 @@ function Score({ resume, keywords }: AtsScoreProps) {
             cx="28"
             cy="28"
             r="25"
-            stroke={scoreData.strokeColor}
             strokeDasharray="157"
             strokeDashoffset={scoreData.strokeDashoffset}
             style={{
               fill: "none",
+              stroke: scoreData.strokeColor,
+              strokeDashoffset: scoreData.strokeDashoffset,
               strokeWidth: 5,
               strokeLinecap: "round",
               transformOrigin: "center",

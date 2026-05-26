@@ -1,4 +1,4 @@
-# 📄 ATS Resume Builder (Under Development)
+# 📄 ATS Resume Builder
 
 [![React](https://img.shields.io/badge/React-19-61dafb)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-5-purple)](https://vitejs.dev/)
@@ -28,6 +28,14 @@ The app is designed to help users structure their resumes in a clean format opti
 - 💾 Client-side only (no data upload)
 - 🎨 Clean UI using plain CSS design system
 - ⚡ Fast performance with Vite
+
+---
+
+## 📸 Screenshot
+
+<p align="center">
+  <img src="screenshot.png" alt="Image Optimizer Screenshot" width="1000">
+</p>
 
 ---
 

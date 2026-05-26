@@ -1,5 +1,5 @@
 import "./AppearanceTab.css";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 import type { Theme } from "../../types/resume";
 

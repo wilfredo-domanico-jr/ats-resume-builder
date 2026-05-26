@@ -2,7 +2,6 @@ import "./Skills.css";
 import { useEffect, useState } from "react";
 import type { SkillsForm } from "../../../../types/resume";
 import SkillCard from "./components/SkillCard";
-import { useResume } from "../../../../hooks/useResume";
 
 import {
   DndContext,
