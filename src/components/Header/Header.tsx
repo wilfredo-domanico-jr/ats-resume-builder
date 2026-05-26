@@ -1,6 +1,6 @@
 import "./Header.css";
 import { useState, useEffect } from "react";
-import logo from "../../../public/favicon.svg";
+import logo from "../../assets/logo.svg";
 type HeaderProps = {
   resetResume: () => void;
   loadSamples: () => void;
@@ -28,7 +28,13 @@ function Header({ resetResume, loadSamples }: HeaderProps) {
         <div className="header-left">
           <div className="header-logo">
             <img src={logo} alt="Company Profile Logo" width={25} height={25} />
-            ATS-Resume<span>Builder</span>
+            <div className="title-wrapper-desktop">
+              ATS-Resume<span>Builder</span>
+            </div>
+
+            <div className="title-wrapper-mobile">
+              ATS<span>Builder</span>
+            </div>
           </div>
         </div>
         <div className="header-right">

@@ -56,11 +56,27 @@
   color: var(--text);
 }
 
+.title-wrapper-desktop {
+  display: block;
+}
+
+.title-wrapper-mobile {
+  display: none;
+}
+
 @media (max-width: 540px) {
   .header {
     padding: 0 0.85rem;
   }
   .header-logo {
     font-size: 1rem;
+  }
+
+  .title-wrapper-desktop {
+    display: none;
+  }
+
+  .title-wrapper-mobile {
+    display: block;
   }
 }
