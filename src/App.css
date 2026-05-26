@@ -28,6 +28,14 @@
   transition: background var(--transition);
 }
 
+/* ─── FULL PREVIEW MODE VISUAL TWEAK ───────────────────────────── */
+
+.app-layout.full-preview-mode .preview-scroll {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0;
+}
+
 @media (max-width: 900px) {
   .form-panel {
     width: 100%;

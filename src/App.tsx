@@ -19,6 +19,7 @@ function App() {
     "details" | "section" | "appearance"
   >("details");
 
+  const [viewMode, setViewMode] = useState<"live" | "full">("live");
   const resumeHooks = useResume();
 
   return (
@@ -31,41 +32,46 @@ function App() {
       />
       <MobileViewToggle />
 
-      <div className="app-layout">
-        <aside className="form-panel">
-          <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
+      <div
+        className={`app-layout ${viewMode === "full" ? "full-preview-mode" : ""}`}
+      >
+        {viewMode === "live" && (
+          <aside className="form-panel">
+            <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
 
-          {activeTab === "details" && (
-            <DetailsTab
-              resume={resumeHooks.resume}
-              setContact={resumeHooks.updateContact}
-              setKeywords={resumeHooks.updateKeywords}
-              setSummary={resumeHooks.updateSummary}
-              setExperience={resumeHooks.updateExperience}
-              setEducation={resumeHooks.updateEducation}
-              setSkills={resumeHooks.updateSkills}
-              setCertifications={resumeHooks.updateCertications}
-              setProjects={resumeHooks.updateProjects}
-            />
-          )}
+            {activeTab === "details" && (
+              <DetailsTab
+                resume={resumeHooks.resume}
+                setContact={resumeHooks.updateContact}
+                setKeywords={resumeHooks.updateKeywords}
+                setSummary={resumeHooks.updateSummary}
+                setExperience={resumeHooks.updateExperience}
+                setEducation={resumeHooks.updateEducation}
+                setSkills={resumeHooks.updateSkills}
+                setCertifications={resumeHooks.updateCertications}
+                setProjects={resumeHooks.updateProjects}
+              />
+            )}
 
-          {activeTab === "section" && (
-            <SectionsTab
-              sections={resumeHooks.sections}
-              setSections={resumeHooks.setSections}
-            />
-          )}
+            {activeTab === "section" && (
+              <SectionsTab
+                sections={resumeHooks.sections}
+                setSections={resumeHooks.setSections}
+              />
+            )}
 
-          {activeTab === "appearance" && (
-            <AppearanceTab
-              themes={resumeHooks.themes}
-              resumeTheme={resumeHooks.resumeTheme}
-              setResumeTheme={resumeHooks.setResumeTheme}
-            />
-          )}
-        </aside>
+            {activeTab === "appearance" && (
+              <AppearanceTab
+                themes={resumeHooks.themes}
+                resumeTheme={resumeHooks.resumeTheme}
+                setResumeTheme={resumeHooks.setResumeTheme}
+              />
+            )}
+          </aside>
+        )}
+
         <main className="preview-panel">
-          <PreviewToolbar />
+          <PreviewToolbar viewMode={viewMode} setViewMode={setViewMode} />
           <PreviewScroll
             resume={resumeHooks.resume}
             sections={resumeHooks.sections}
