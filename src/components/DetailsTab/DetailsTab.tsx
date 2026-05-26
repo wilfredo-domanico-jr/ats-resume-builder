@@ -44,7 +44,7 @@ function DetailsTab({
   return (
     <>
       <div className="form-panel-inner">
-        <Score />
+        <Score resume={resume} keywords={resume.keywords} />
         <hr />
         <Contact contact={resume.contact} setContact={setContact} />
         <Keywords
