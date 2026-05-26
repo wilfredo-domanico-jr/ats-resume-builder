@@ -308,10 +308,8 @@ export function useResume() {
     { id: "experience", label: "Experience", enabled: true },
     { id: "education", label: "Education", enabled: true },
     { id: "skills", label: "Skills", enabled: true },
-    { id: "certifications", label: "Certifications", enabled: false },
-    { id: "projects", label: "Projects", enabled: false },
-    { id: "languages", label: "Languages", enabled: false },
-    { id: "volunteer", label: "Volunteer", enabled: false },
+    { id: "certifications", label: "Certifications", enabled: true },
+    { id: "projects", label: "Projects", enabled: true },
   ];
 
   const resetResume = () => {
@@ -397,16 +395,7 @@ export function useResume() {
     }));
   };
 
-  const [sections, setSections] = useState([
-    { id: "summary", label: "Professional Summary", enabled: true },
-    { id: "experience", label: "Experience", enabled: true },
-    { id: "education", label: "Education", enabled: true },
-    { id: "skills", label: "Skills", enabled: true },
-    { id: "certifications", label: "Certifications", enabled: false },
-    { id: "projects", label: "Projects", enabled: false },
-    { id: "languages", label: "Languages", enabled: false },
-    { id: "volunteer", label: "Volunteer", enabled: false },
-  ]);
+  const [sections, setSections] = useState(initialSections);
 
   return {
     resume,

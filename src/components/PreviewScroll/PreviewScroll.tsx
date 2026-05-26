@@ -1,44 +1,64 @@
 import "./PreviewScroll.css";
 import type { ResumeData } from "../../types/resume";
-import ContactPreview from "./components/ContactPreview/ContactPreview";
 import SummaryPreview from "./components/SummaryPreview/SummaryPreview";
 import ExperiencePreview from "./components/ExperiencePreview/ExperiencePreview";
 import EducationPreview from "./components/EducationPreview/EducationPreview";
 import SkillsPreview from "./components/SkillsPreview/SkillsPreview";
 import CertificationsPreview from "./components/CertificationsPreview/CertificationsPreview";
 import ProjectsPreview from "./components/ProjectsPreview/ProjectsPreview";
+import ContactPreview from "./components/ContactPreview/ContactPreview";
 
-type ContactFormProps = {
-  resume: ResumeData;
+type SectionConfig = {
+  id: string;
+  label: string;
+  enabled: boolean;
 };
-function PreviewScroll({ resume }: ContactFormProps) {
+
+type PreviewScrollProps = {
+  resume: ResumeData;
+  sections: SectionConfig[];
+};
+function PreviewScroll({ resume, sections }: PreviewScrollProps) {
   const { links, ...textFields } = resume.contact;
 
   const hasTextData = Object.values(textFields).some(
-    (value) => value.trim() !== "",
+    (val) => val && val.trim() !== "",
   );
+  const hasContactData = hasTextData || (links && links.length > 0);
 
-  const hasContactData = hasTextData || links.length > 0;
-  const hasProfessionalSummary = resume.summary.trim() !== "";
-  const hasExperienceData = resume.experience.length > 0;
-  const hasEducationData = resume.education.length > 0;
-  const hasSkillData = resume.skills.length > 0;
-  const hasCertificationData = resume.certifications.length > 0;
-  const hasProjectData = resume.projects.length > 0;
+  const componentRegistry: Record<string, React.ReactNode> = {
+    summary:
+      resume.summary?.trim() !== "" ? (
+        <SummaryPreview summary={resume.summary} />
+      ) : null,
+    experience:
+      resume.experience?.length > 0 ? (
+        <ExperiencePreview experience={resume.experience} />
+      ) : null,
+    education:
+      resume.education?.length > 0 ? (
+        <EducationPreview education={resume.education} />
+      ) : null,
+    skills:
+      resume.skills?.length > 0 ? (
+        <SkillsPreview skills={resume.skills} />
+      ) : null,
+    certifications:
+      resume.certifications?.length > 0 ? (
+        <CertificationsPreview certifications={resume.certifications} />
+      ) : null,
+    projects:
+      resume.projects?.length > 0 ? (
+        <ProjectsPreview projects={resume.projects} />
+      ) : null,
+  };
 
-  const sections = [
-    hasContactData && <ContactPreview contact={resume.contact} />,
-    hasProfessionalSummary && <SummaryPreview summary={resume.summary} />,
-    hasExperienceData && <ExperiencePreview experience={resume.experience} />,
-    hasEducationData && <EducationPreview education={resume.education} />,
-    hasSkillData && <SkillsPreview skills={resume.skills} />,
-    hasCertificationData && (
-      <CertificationsPreview certifications={resume.certifications} />
-    ),
-    hasProjectData && <ProjectsPreview projects={resume.projects} />,
-  ].filter(Boolean);
+  const orderedSectionsToRender = sections
+    .filter((section) => section.enabled)
+    .map((section) => componentRegistry[section.id])
+    .filter(Boolean);
 
-  const hasAnyData = sections.length > 0;
+  const hasAnyData = hasContactData || orderedSectionsToRender.length > 0;
 
   return (
     <>
@@ -58,7 +78,10 @@ function PreviewScroll({ resume }: ContactFormProps) {
             </div>
           </div>
         ) : (
-          <div className="resume-paper">{sections}</div>
+          <div className="resume-paper">
+            {hasContactData && <ContactPreview contact={resume.contact} />}
+            {orderedSectionsToRender}
+          </div>
         )}
       </div>
     </>

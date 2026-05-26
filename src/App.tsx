@@ -60,7 +60,10 @@ function App() {
         </aside>
         <main className="preview-panel">
           <PreviewToolbar />
-          <PreviewScroll resume={resumeHooks.resume} />
+          <PreviewScroll
+            resume={resumeHooks.resume}
+            sections={resumeHooks.sections}
+          />
         </main>
       </div>
     </>
