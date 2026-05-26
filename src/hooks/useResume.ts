@@ -66,7 +66,7 @@ export function useResume() {
     experience: [
       {
         id: crypto.randomUUID(),
-        company: "FREY-FIL CORPORATION",
+        company: "Second Company",
         jobTitle: "Software Developer",
         employmentType: "Full-time",
         startDate: "2025-01",
@@ -89,7 +89,7 @@ export function useResume() {
 
       {
         id: crypto.randomUUID(),
-        company: "JIMAC INCORPORATED",
+        company: "First Company",
         jobTitle: "Full Stack Web Developer",
         employmentType: "Full-time",
         startDate: "2023-07",
@@ -107,7 +107,7 @@ export function useResume() {
     education: [
       {
         id: crypto.randomUUID(),
-        school: "Quezon City University",
+        school: "My Universtity",
         degree: "Bachelor of Science",
         fieldOfStudy: "Information Technology",
         startDate: "2019-01",
