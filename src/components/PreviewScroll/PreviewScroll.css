@@ -135,8 +135,7 @@ a {
 /* ─── RESPONSIVE ────────────────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .preview-scroll {
-    padding: 0;
-    overflow: visible;
+    padding: 1rem;
   }
 
   .resume-paper {
@@ -148,6 +147,8 @@ a {
 
     page-break-after: always;
     break-after: page;
+
+    padding: 1.5rem 1.75rem;
   }
 }
 

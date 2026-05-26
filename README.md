@@ -34,7 +34,7 @@ The app is designed to help users structure their resumes in a clean format opti
 ## 📸 Screenshot
 
 <p align="center">
-  <img src="screenshot.png" alt="Image Optimizer Screenshot" width="1000">
+  <img src="screenshot.png" alt="Image Optimizer Screenshot" width="auto">
 </p>
 
 ---

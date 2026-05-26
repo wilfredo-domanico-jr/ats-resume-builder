@@ -37,6 +37,11 @@
 }
 
 @media (max-width: 900px) {
+  .app-layout {
+    flex-direction: column;
+    height: auto;
+  }
+
   .form-panel {
     width: 100%;
     border-right: none;
@@ -50,11 +55,11 @@
     min-height: 100vh;
   }
 
-  .app-layout[data-mobile-view="form"] .preview-panel {
-    display: none;
+  .app-layout.mobile-show-form .preview-panel {
+    display: none !important;
   }
 
-  .app-layout[data-mobile-view="preview"] .form-panel {
-    display: none;
+  .app-layout.mobile-show-preview .form-panel {
+    display: none !important;
   }
 }

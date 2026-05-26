@@ -19,6 +19,9 @@ function App() {
   >("details");
 
   const [viewMode, setViewMode] = useState<"live" | "full">("live");
+
+  const [mobileView, setMobileView] = useState<"form" | "preview">("form");
+
   const resumeHooks = useResume();
   const { toasts, showToast } = useToasts();
 
@@ -70,10 +73,10 @@ function App() {
         resetResume={resumeHooks.resetResume}
         loadSamples={resumeHooks.loadSamples}
       />
-      <MobileViewToggle />
+      <MobileViewToggle mobileView={mobileView} setMobileView={setMobileView} />
 
       <div
-        className={`app-layout ${viewMode === "full" ? "full-preview-mode" : ""}`}
+        className={`app-layout ${viewMode === "full" ? "full-preview-mode" : ""}mobile-show-${mobileView}`}
       >
         {viewMode === "live" && (
           <aside className="form-panel">
