@@ -10,3 +10,12 @@
   font-size: 0.775rem;
   color: #2d2c2a;
 }
+
+@media print {
+  .resume-skills-grid {
+    gap: 0;
+  }
+  .resume-skill-tag {
+    padding: 0.1rem;
+  }
+}

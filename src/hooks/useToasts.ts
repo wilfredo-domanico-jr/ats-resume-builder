@@ -17,16 +17,16 @@ export function useToasts() {
     setToasts((prev) => [...prev, { id, icon, msg, isFadingOut: false }]);
 
     // Start the fade-out CSS animation at 2.5 seconds
-    setTimeout(() => {
-      setToasts((prev) =>
-        prev.map((t) => (t.id === id ? { ...t, isFadingOut: true } : t)),
-      );
+    // setTimeout(() => {
+    //   setToasts((prev) =>
+    //     prev.map((t) => (t.id === id ? { ...t, isFadingOut: true } : t)),
+    //   );
 
-      //  Remove the toast completely from the DOM after the animation completes (300ms)
-      setTimeout(() => {
-        setToasts((prev) => prev.filter((t) => t.id !== id));
-      }, 300);
-    }, 2500);
+    //   //  Remove the toast completely from the DOM after the animation completes (300ms)
+    //   setTimeout(() => {
+    //     setToasts((prev) => prev.filter((t) => t.id !== id));
+    //   }, 300);
+    // }, 2500);
   }, []);
 
   return { toasts, showToast };

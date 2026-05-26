@@ -8,6 +8,13 @@
   gap: 0.5rem;
   pointer-events: none;
 }
+
+@media (max-width: 900px) {
+  .toast-wrap {
+    left: 1.5rem;
+  }
+}
+
 .toast {
   background: var(--surface);
   border: 1px solid var(--border);

@@ -30,7 +30,7 @@
 
 /* ─── FULL PREVIEW MODE VISUAL TWEAK ───────────────────────────── */
 
-.app-layout.full-preview-mode .preview-scroll {
+.app-layout .full-preview-mode .preview-scroll {
   display: flex;
   justify-content: center;
   padding: 2rem 0;
@@ -55,11 +55,7 @@
     min-height: 100vh;
   }
 
-  .app-layout.mobile-show-form .preview-panel {
-    display: none !important;
-  }
-
-  .app-layout.mobile-show-preview .form-panel {
+  .hide-panel {
     display: none !important;
   }
 }

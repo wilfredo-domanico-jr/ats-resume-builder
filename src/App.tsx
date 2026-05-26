@@ -76,10 +76,12 @@ function App() {
       <MobileViewToggle mobileView={mobileView} setMobileView={setMobileView} />
 
       <div
-        className={`app-layout ${viewMode === "full" ? "full-preview-mode" : ""}mobile-show-${mobileView}`}
+        className={`app-layout ${viewMode === "full" ? "full-preview-mode" : ""}`}
       >
         {viewMode === "live" && (
-          <aside className="form-panel">
+          <aside
+            className={`form-panel ${mobileView === "preview" ? "hide-panel" : ""}`}
+          >
             <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
 
             {activeTab === "details" && (
@@ -113,7 +115,9 @@ function App() {
           </aside>
         )}
 
-        <main className="preview-panel">
+        <main
+          className={`preview-panel ${mobileView === "form" ? "hide-panel" : ""}`}
+        >
           <PreviewToolbar
             viewMode={viewMode}
             setViewMode={setViewMode}
