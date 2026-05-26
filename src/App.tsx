@@ -1,8 +1,9 @@
 import "./App.css";
 import { useState } from "react";
 import { useResume } from "./hooks/useResume";
+import { useToasts } from "./hooks/useToasts";
 
-import Toast from "./components/Toast/Toast";
+import ToastContainer from "./components/Toast/ToastContainer";
 import Header from "./components/Header/Header";
 import MobileViewToggle from "./components/MobileViewToggle/MobileViewToggle";
 import Tabs from "./components/Tabs/Tabs";
@@ -13,17 +14,21 @@ import PreviewToolbar from "./components/PreviewToolbar/PreviewToolbar";
 import PreviewScroll from "./components/PreviewScroll/PreviewScroll";
 
 function App() {
-  const [toastMessage, setToastMessage] = useState<string | null>(null);
-
   const [activeTab, setActiveTab] = useState<
     "details" | "section" | "appearance"
   >("details");
 
   const [viewMode, setViewMode] = useState<"live" | "full">("live");
   const resumeHooks = useResume();
+  const { toasts, showToast } = useToasts();
 
   const handlePrintValidation = () => {
     const resume = resumeHooks.resume;
+
+    if (!resume || !resume.contact) {
+      showToast("⚠️", "No resume layout found!");
+      return;
+    }
 
     const { links, ...textFields } = resume.contact;
     const hasContactData =
@@ -48,12 +53,10 @@ function App() {
 
     if (!hasAnyData) {
       // Trigger error toast if resume sheet is totally empty
-      setToastMessage(
+      showToast(
+        "⚠️",
         "Cannot print an empty resume. Please fill out your details!",
       );
-
-      // Auto-hide the toast after 3 seconds
-      setTimeout(() => setToastMessage(null), 3000);
     } else {
       // Execute standard browser printing if layout data exists
       window.print();
@@ -62,13 +65,7 @@ function App() {
 
   return (
     <>
-      {toastMessage && (
-        <Toast
-          message={toastMessage}
-          icon={toastMessage.includes("empty") ? "⚠️" : "🗑️"}
-        />
-      )}
-
+      <ToastContainer toasts={toasts} />
       <Header
         resetResume={resumeHooks.resetResume}
         loadSamples={resumeHooks.loadSamples}
@@ -115,7 +112,6 @@ function App() {
 
         <main className="preview-panel">
           <PreviewToolbar
-            resume={resumeHooks.resume}
             viewMode={viewMode}
             setViewMode={setViewMode}
             onPrint={handlePrintValidation}
