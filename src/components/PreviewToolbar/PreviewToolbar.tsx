@@ -1,11 +1,15 @@
 import "./PreviewToolbar.css";
-
 type PreviewToolbarProps = {
   viewMode: "live" | "full";
   setViewMode: (mode: "live" | "full") => void;
+  onPrint: () => void;
 };
 
-function PreviewToolbar({ viewMode, setViewMode }: PreviewToolbarProps) {
+function PreviewToolbar({
+  viewMode,
+  setViewMode,
+  onPrint,
+}: PreviewToolbarProps) {
   return (
     <>
       <div className="preview-toolbar">
@@ -26,7 +30,9 @@ function PreviewToolbar({ viewMode, setViewMode }: PreviewToolbarProps) {
           </div>
         </div>
         <div className="preview-toolbar-right">
-          <button className="btn btn-primary btn-sm">🖨️ Print as PDF</button>
+          <button onClick={onPrint} className="btn btn-primary btn-sm">
+            🖨️ Print as PDF
+          </button>
         </div>
       </div>
     </>

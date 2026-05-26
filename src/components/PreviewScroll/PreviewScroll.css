@@ -179,6 +179,46 @@ a {
 }
 
 @media print {
+  body,
+  .header,
+  .form-panel,
+  .preview-toolbar,
+  .mobile-view-toggle {
+    display: none !important;
+  }
+
+  html,
+  body,
+  #root,
+  .app-layout,
+  .preview-panel,
+  .preview-scroll {
+    background: #ffffff !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+  }
+
+  .resume-paper {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #ffffff !important;
+    page-break-after: avoid;
+    page-break-inside: auto;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 20mm;
+  }
+
   .preview-scroll {
     padding: 0;
     overflow: visible;

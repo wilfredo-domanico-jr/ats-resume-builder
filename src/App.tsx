@@ -13,7 +13,7 @@ import PreviewToolbar from "./components/PreviewToolbar/PreviewToolbar";
 import PreviewScroll from "./components/PreviewScroll/PreviewScroll";
 
 function App() {
-  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   const [activeTab, setActiveTab] = useState<
     "details" | "section" | "appearance"
@@ -22,9 +22,52 @@ function App() {
   const [viewMode, setViewMode] = useState<"live" | "full">("live");
   const resumeHooks = useResume();
 
+  const handlePrintValidation = () => {
+    const resume = resumeHooks.resume;
+
+    const { links, ...textFields } = resume.contact;
+    const hasContactData =
+      Object.values(textFields).some((val) => val && val.trim() !== "") ||
+      (links && links.length > 0);
+    const hasSummary = !!resume.summary?.trim();
+    const hasExperience = resume.experience && resume.experience.length > 0;
+    const hasEducation = resume.education && resume.education.length > 0;
+    const hasSkills = resume.skills && resume.skills.length > 0;
+    const hasCertifications =
+      resume.certifications && resume.certifications.length > 0;
+    const hasProjects = resume.projects && resume.projects.length > 0;
+
+    const hasAnyData =
+      hasContactData ||
+      hasSummary ||
+      hasExperience ||
+      hasEducation ||
+      hasSkills ||
+      hasCertifications ||
+      hasProjects;
+
+    if (!hasAnyData) {
+      // Trigger error toast if resume sheet is totally empty
+      setToastMessage(
+        "Cannot print an empty resume. Please fill out your details!",
+      );
+
+      // Auto-hide the toast after 3 seconds
+      setTimeout(() => setToastMessage(null), 3000);
+    } else {
+      // Execute standard browser printing if layout data exists
+      window.print();
+    }
+  };
+
   return (
     <>
-      {showToast && <Toast message="Item deleted successfully" icon="🗑️" />}
+      {toastMessage && (
+        <Toast
+          message={toastMessage}
+          icon={toastMessage.includes("empty") ? "⚠️" : "🗑️"}
+        />
+      )}
 
       <Header
         resetResume={resumeHooks.resetResume}
@@ -71,7 +114,12 @@ function App() {
         )}
 
         <main className="preview-panel">
-          <PreviewToolbar viewMode={viewMode} setViewMode={setViewMode} />
+          <PreviewToolbar
+            resume={resumeHooks.resume}
+            viewMode={viewMode}
+            setViewMode={setViewMode}
+            onPrint={handlePrintValidation}
+          />
           <PreviewScroll
             resume={resumeHooks.resume}
             sections={resumeHooks.sections}

@@ -87,6 +87,8 @@
   color: var(--text-3);
   font-size: 0.75rem;
   transition: transform var(--transition);
+  background: var(--surface-2);
+  color: var(--text-1);
 }
 .card.open .card-chevron {
   transform: rotate(180deg);
