@@ -16,6 +16,7 @@ function ProjectsPreview({ projects }: ProjectsPreviewProps) {
 
             <a
               href={proj.url}
+              target="_blank"
               style={{
                 fontSize: ".75rem",
                 color: "#2563eb",

@@ -38,22 +38,6 @@ function PreviewScroll({ resume }: ContactFormProps) {
     hasProjectData && <ProjectsPreview projects={resume.projects} />,
   ].filter(Boolean);
 
-  const pages: any[][] = [];
-  let currentPage: any[] = [];
-
-  sections.forEach((section) => {
-    // max 3 sections per page
-    if (currentPage.length === 3) {
-      pages.push(currentPage);
-      currentPage = [];
-    }
-    currentPage.push(section);
-  });
-
-  if (currentPage.length) {
-    pages.push(currentPage);
-  }
-
   const hasAnyData = sections.length > 0;
 
   return (
@@ -74,13 +58,7 @@ function PreviewScroll({ resume }: ContactFormProps) {
             </div>
           </div>
         ) : (
-          <div className="resume-pages">
-            {pages.map((page, pageIndex) => (
-              <div key={pageIndex} className="resume-paper">
-                {page}
-              </div>
-            ))}
-          </div>
+          <div className="resume-paper">{sections}</div>
         )}
       </div>
     </>

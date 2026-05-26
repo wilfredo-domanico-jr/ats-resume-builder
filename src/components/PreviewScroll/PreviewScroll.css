@@ -1,37 +1,36 @@
 .preview-scroll {
   flex: 1;
   overflow-y: auto;
-  padding: 2rem;
+  padding: 2rem 1rem;
   display: flex;
   justify-content: center;
+  align-items: flex-start;
+  background-color: #f4f4f5;
 }
 
 .resume-paper {
   background: #fff;
   color: #1a1917;
-  width: 100%;
-  max-width: 780px;
-  height: 1056px;
 
-  overflow: hidden;
-  flex-shrink: 0;
+  width: 8.5in;
+  min-height: 11in;
+  height: max-content;
+  padding: 0.6in;
+
+  box-sizing: border-box;
 
   border-radius: 4px;
   box-shadow: var(--shadow-lg);
-  padding: 2.5rem 3rem;
 
   font-family: "DM Sans", sans-serif;
   font-size: 13.5px;
   line-height: 1.55;
 
-  transition: box-shadow var(--transition);
+  overflow: hidden;
+
+  flex-shrink: 0;
 }
-.resume-pages {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  align-items: center;
-}
+
 
 .resume-name {
   font-family: var(--font-display);
@@ -123,10 +122,19 @@
 /* ─── RESPONSIVE ────────────────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .preview-scroll {
-    padding: 1rem;
+    padding: 0;
+    overflow: visible;
   }
+
   .resume-paper {
-    padding: 1.5rem 1.75rem;
+    width: 100%;
+    min-height: auto;
+
+    box-shadow: none;
+    border-radius: 0;
+
+    page-break-after: always;
+    break-after: page;
   }
 }
 
@@ -158,7 +166,18 @@
 }
 
 @media print {
+  .preview-scroll {
+    padding: 0;
+    overflow: visible;
+  }
+
   .resume-paper {
-    page-break-after: always;
+    width: 100%;
+    min-height: auto;
+
+    box-shadow: none;
+    border-radius: 0;
+
+    break-inside: auto;
   }
 }
