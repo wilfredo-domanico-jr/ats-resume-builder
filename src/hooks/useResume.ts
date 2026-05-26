@@ -69,7 +69,7 @@ export function useResume() {
         company: "FREY-FIL CORPORATION",
         jobTitle: "Software Developer",
         employmentType: "Full-time",
-        startDate: "2025-01-01",
+        startDate: "2025-01",
         endDate: "",
         currentlyWorking: true,
         bulletPoints: [
@@ -92,8 +92,8 @@ export function useResume() {
         company: "JIMAC INCORPORATED",
         jobTitle: "Full Stack Web Developer",
         employmentType: "Full-time",
-        startDate: "2023-07-01",
-        endDate: "2025-01-01",
+        startDate: "2023-07",
+        endDate: "2025-01",
         currentlyWorking: false,
         bulletPoints: [
           "Developed and maintained POS, Inventory, CMS, and ERP systems for brands including 7-Eleven, Vans, and The Generics Pharmacy.",
@@ -110,8 +110,8 @@ export function useResume() {
         school: "Quezon City University",
         degree: "Bachelor of Science",
         fieldOfStudy: "Information Technology",
-        startDate: "2019-01-01",
-        endDate: "2023-01-01",
+        startDate: "2019-01",
+        endDate: "2023-01",
       },
     ],
 
